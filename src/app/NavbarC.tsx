@@ -1,0 +1,343 @@
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown, Phone, Menu, X, ArrowRight } from "lucide-react";
+
+const NAVY = "#161929";
+const GREEN = "#a8cf4e";
+const GREEN_DIM = "#7fa038";
+
+const leistungen = [
+  { title: "Elektro-Dienstleistungen für Privatkunden", sub: "Elektroinstallationen für Ihr Zuhause", img: "https://images.unsplash.com/photo-1676630656246-3047520adfdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80" },
+  { title: "Elektro-Dienstleistungen für Gewerbekunden", sub: "Einbau, Austausch und Wartung", img: "https://images.unsplash.com/photo-1758101755915-462eddc23f57?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80" },
+  { title: "Smart-Home Lösungen", sub: "Smart-Home Lösungen für Ihr Zuhause", img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80" },
+  { title: "Lichtdesign und -installation", sub: "Lichtplanung und Leuchtmittel-Austausch", img: "https://images.unsplash.com/photo-1770816306485-862b40ecc402?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80" },
+  { title: "Notfallreparaturen", sub: "Schnelle Hilfe rund um die Uhr", img: "https://images.unsplash.com/photo-1732660780054-0cf9fadb9d30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80" },
+];
+
+const energieloesungen = [
+  { title: "Photovoltaik-Anlagen", sub: "Planung und Installation", img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80" },
+  { title: "Solaranlagen-Installation", sub: "Fachgerechte Montage auf dem Dach", img: "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400&q=80" },
+  { title: "Energieeffiziente Beleuchtung", sub: "LED und smarte Lichtsysteme", img: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&q=80" },
+  { title: "Ladestationen für E-Fahrzeuge", sub: "Wallbox-Installation für Zuhause", img: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&q=80" },
+];
+
+function Logo({ size = 36 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M13 16.6512V16.5955V16.5397V16.4841V16.4285V16.3729V16.3174V16.262V16.2066V16.1513V16.096V16.0408V15.9856V15.9305V15.8755V15.8205V15.7656V15.7107V15.6559V15.6011V15.5464V15.4918V15.4372V15.3827V15.3282V15.2738V15.2195V15.1652V15.111V15.0569V15.0028V14.9487V14.8948V14.8409V14.787V14.7332V14.6795V14.6258V14.5722V14.5187V14.4652V14.4118V14.3585V14.3052V14.252V14.1988V14.1457V14.0927V14.0398V13.9869V13.934V13.8813V13.8286V13.7759V13.7234V13.6709V13.6184V13.5661V13.5138V13.4615V13.4094V13.3573V13.3052V13.2533V13.2014V13.1496V13.0978V13.0461V12.9945V12.943V12.8915V12.8401V12.7887V12.7374V12.6862V12.6351V12.5841V12.5331V12.4821V12.4313V12.3805V12.3298V12.2792V12.2286V12.1781V12.1277V12.0774V12.0271V11.9769V11.9268V11.8768V11.8268V11.7769V11.7271V11.6773V11.6276V11.578V11.5285V11.4791V11.4297V11.3804V11.3312V11.282V11.2329V11.184V11.135V11.0862V11.0374V10.9887V10.9401V10.8916V10.8432V10.7948V10.7465V10.6983V10.6501V10.6021V10.5541V10.5062V10.4584V10.4106V10.363V10.3154V10.2679V10.2205V10.1732V10.1259V10.0787V10.0316V9.98463V9.9377V9.89086V9.84409V9.79741V9.75082V9.7043V9.65787V9.61153V9.56526V9.51909V9.47299V9.42698V9.38106V9.33522V9.28946V9.24379V9.19821V9.15271V9.1073V9.06197V9.01673V8.97158V8.92651V8.88153V8.83664V8.79183V8.74711V8.70248V8.65794V8.61349V8.56912V8.52485V8.48066V8.43656V8.39255V8.34863V8.3048V8.26106V8.21741V8.17385V8.13039V8.08701V8.04372V8.00053V7.95742V7.91441V7.87149V7.82866V7.78592V7.74328V7.70073V7.65827V7.61591V7.57364V7.53146V7.48937V7.44738V7.40549V7.36368V7.32198V7.28036V7.23885V7.19743V7.1561V7.11487V7.07373V7.03269V6.99175V6.95091V6.91016V6.8695V6.82895V6.78849V6.74813V6.70787V6.6677V6.62764V6.58767V6.5478V6.50803V6.46836V6.42878V6.38931V6.34994V6.31067V6.27149V6.23242V6.19345V6.15458V6.11581V6.07714V6.03857V6.0001V5.96174V5.92347V5.88531V5.84726V5.8093V5.77145V5.7337V5.69605V5.65851V5.62107V5.58374V5.54651V5.50938V5.47236V5.43544V5.39863V5.36192V5.32532V5.28882V5.25243V5.21615V5.17997V5.1439V5.10793V5.07208V5.03633V5.00068V4.96515V4.92972V4.8944V4.85919V4.82408V4.78909V4.7542V4.71942V4.68475V4.65019V4.61575V4.58141V4.54718V4.51306V4.47905V4.44515V4.41136V4.37769V4.34412V4.31067V4.27733V4.2441V4.21098V4.17798V4.14508V4.1123V4.07964V4.04708V4.01465V3.98232V3.95011V3.91801V3.88602V3.85415V3.8224V3.79076V3.75923V3.72783V3.69653V3.66535V3.63429V3.60335V3.57252V3.5418V3.51121V3.48073V3.45037V3.42012V3.38999V3.35999V3.33009V3.30032V3.27067V3.24113V3.21172V3.18242V3.15324V3.12418V3.09524V3.06643V3.03773V3.00915V2.98069V2.95236V2.92414V2.89605V2.86807V2.84022V2.81249V2.78489V2.7574V2.73004V2.7028V2.67568V2.64869V2.62182V2.59507V2.56845V2.54195V2.51558V2.48933V2.4632V2.4372V2.41133V2.38558V2.35995V2.33445V2.30908V2.28383V2.25871V2.23372V2.20885V2.18411V2.1595V2.13501V2.11065V2.08642V2.06232V2.03835V2.0145V1.99079V1.9672V1.94374V1.92041V1.89721V1.87414V1.8512V1.82839V1.80571V1.78316V1.76074V1.73845V1.71629V1.69427V1.67238V1.65061V1.62899V1.60749V1.58612V1.56489V1.54379V1.52283V1.50199V1.48129V1.46073V1.4403V1.42V1.39984V1.37981V1.35991V1.34015V1.32053V1.30104V1.28169V1.26247V1.24339V1.22445V1.20564V1.18697V1.16844V1.15004V1.13178V1.11366V1.09567V1.07783V1.06012V1.04255V1.02512V1.00782V0.99067V0.973656V0.956781V0.940046V0.923451V0.906996V0.890681V0.874506V0.858473V0.84258V0.826828V0.811218V0.795749V0.780422V0.765238V0.750195V0.735294V0.720537V0.705922V0.69145V0.677121V0.662936V0.648895V0.634997V0.621244V0.607635V0.59417V0.58085V0.567675V0.554646V0.541761V0.529022V0.516429V0.503982V0.491681V0.479527V0.467519V0.455658V0.443945V0.432378V0.420959V0.409688V0.398564V0.387589V0.376762V0.366083V0.355553V0.345173V0.334941V0.324859V0.314926V0.305143V0.295511V0.286028V0.276696V0.267514V0.258484V0.249604V0.240876V0.232299V0.223874V0.215601V0.20748V0.199512V0.191696V0.184032V0.176522V0.169165V0.161961V0.154911V0.148015V0.141273V0.134685V0.128252V0.121973V0.115849V0.10988V0.104066V0.0984085V0.0929062V0.0875599V0.0823697V0.077336V0.0724587V0.0677383V0.0631749V0.0587687V0.0545199V0.0504287V0.0464954V0.0427202V0.0391032V0.0356447V0.0323449V0.029204V0.0262222V0.0233997V0.0207368V0.0182337V0.0158904V0.0137074V0.0116848V0.00982271V0.00812147V0.00658125V0.00520225V0.0039847V0.0029288V0.00203477V0.00130282V0.000733153V0.000325987V8.15319e-05L10 0L7 8.15319e-05V0.000325987V0.000733153V0.00130282V0.00203477V0.0029288V0.0039847V0.00520225V0.00658125V0.00812147V0.00982271V0.0116848V0.0137074V0.0158904V0.0182337V0.0207368V0.0233997V0.0262222V0.029204V0.0323449V0.0356447V0.0391032V0.0427202V0.0464954V0.0504287V0.0545199V0.0587687V0.0631749V0.0677383V0.0724587V0.077336V0.0823697V0.0875599V0.0929062V0.0984085V0.104066V0.10988V0.115849V0.121973V0.128252V0.134685V0.141273V0.148015V0.154911V0.161961V0.169165V0.176522V0.184032V0.191696V0.199512V0.20748V0.215601V0.223874V0.232299V0.240876V0.249604V0.258484V0.267514V0.276696V0.286028V0.295511V0.305143V0.314926V0.324859V0.334941V0.345173V0.355553V0.366083V0.376762V0.387589V0.398564V0.409688V0.420959V0.432378V0.443945V0.455658V0.467519V0.479527V0.491681V0.503982V0.516429V0.529022V0.541761V0.554646V0.567675V0.58085V0.59417V0.607635V0.621244V0.634997V0.648895V0.662936V0.677121V0.69145V0.705922V0.720537V0.735294V0.750195V0.765238V0.780422V0.795749V0.811218V0.826828V0.84258V0.858473V0.874506V0.890681V0.906996V0.923451V0.940046V0.956781V0.973656V0.99067V1.00782V1.02512V1.04255V1.06012V1.07783V1.09567V1.11366V1.13178V1.15004V1.16844V1.18697V1.20564V1.22445V1.24339V1.26247V1.28169V1.30104V1.32053V1.34015V1.35991V1.37981V1.39984V1.42V1.4403V1.46073V1.48129V1.50199V1.52283V1.54379V1.56489V1.58612V1.60749V1.62899V1.65061V1.67238V1.69427V1.71629V1.73845V1.76074V1.78316V1.80571V1.82839V1.8512V1.87414V1.89721V1.92041V1.94374V1.9672V1.99079V2.0145V2.03835V2.06232V2.08642V2.11065V2.13501V2.1595V2.18411V2.20885V2.23372V2.25871V2.28383V2.30908V2.33445V2.35995V2.38558V2.41133V2.4372V2.4632V2.48933V2.51558V2.54195V2.56845V2.59507V2.62182V2.64869V2.67568V2.7028V2.73004V2.7574V2.78489V2.81249V2.84022V2.86807V2.89605V2.92414V2.95236V2.98069V3.00915V3.03773V3.06643V3.09524V3.12418V3.15324V3.18242V3.21172V3.24113V3.27067V3.30032V3.33009V3.35999V3.38999V3.42012V3.45037V3.48073V3.51121V3.5418V3.57252V3.60335V3.63429V3.66535V3.69653V3.72783V3.75923V3.79076V3.8224V3.85415V3.88602V3.91801V3.95011V3.98232V4.01465V4.04708V4.07964V4.1123V4.14508V4.17798V4.21098V4.2441V4.27733V4.31067V4.34412V4.37769V4.41136V4.44515V4.47905V4.51306V4.54718V4.58141V4.61575V4.65019V4.68475V4.71942V4.7542V4.78909V4.82408V4.85919V4.8944V4.92972V4.96515V5.00068V5.03633V5.07208V5.10793V5.1439V5.17997V5.21615V5.25243V5.28882V5.32532V5.36192V5.39863V5.43544V5.47236V5.50938V5.54651V5.58374V5.62107V5.65851V5.69605V5.7337V5.77145V5.8093V5.84726V5.88531V5.92347V5.96174V6.0001V6.03857V6.07714V6.11581V6.15458V6.19345V6.23242V6.27149V6.31067V6.34994V6.38931V6.42878V6.46836V6.50803V6.5478V6.58767V6.62764V6.6677V6.70787V6.74813V6.78849V6.82895V6.8695V6.91016V6.95091V6.99175V7.03269V7.07373V7.11487V7.1561V7.19743V7.23885V7.28036V7.32198V7.36368V7.40549V7.44738V7.48937V7.53146V7.57364V7.61591V7.65827V7.70073V7.74328V7.78592V7.82866V7.87149V7.91441V7.95742V8.00053V8.04372V8.08701V8.13039V8.17385V8.21741V8.26106V8.3048V8.34863V8.39255V8.43656V8.48066V8.52485V8.56912V8.61349V8.65794V8.70248V8.74711V8.79183V8.83664V8.88153V8.92651V8.97158V9.01673V9.06197V9.1073V9.15271V9.19821V9.24379V9.28946V9.33522V9.38106V9.42698V9.47299V9.51909V9.56526V9.61153V9.65787V9.7043V9.75082V9.79741V9.84409V9.89086V9.9377V9.98463V10.0316V10.0787V10.1259V10.1732V10.2205V10.2679V10.3154V10.363V10.4106V10.4584V10.5062V10.5541V10.6021V10.6501V10.6983V10.7465V10.7948V10.8432V10.8916V10.9401V10.9887V11.0374V11.0862V11.135V11.184V11.2329V11.282V11.3312V11.3804V11.4297V11.4791V11.5285V11.578V11.6276V11.6773V11.7271V11.7769V11.8268V11.8768V11.9268V11.9769V12.0271V12.0774V12.1277V12.1781V12.2286V12.2792V12.3298V12.3805V12.4313V12.4821V12.5331V12.5841V12.6351V12.6862V12.7374V12.7887V12.8401V12.8915V12.943V12.9945V13.0461V13.0978V13.1496V13.2014V13.2533V13.3052V13.3573V13.4094V13.4615V13.5138V13.5661V13.6184V13.6709V13.7234V13.7759V13.8286V13.8813V13.934V13.9869V14.0398V14.0927V14.1457V14.1988V14.252V14.3052V14.3585V14.4118V14.4652V14.5187V14.5722V14.6258V14.6795V14.7332V14.787V14.8409V14.8948V14.9487V15.0028V15.0569V15.111V15.1652V15.2195V15.2738V15.3282V15.3827V15.4372V15.4918V15.5464V15.6011V15.6559V15.7107V15.7656V15.8205V15.8755V15.9305V15.9856V16.0408V16.096V16.1513V16.2066V16.262V16.3174V16.3729V16.4285V16.4841V16.5397V16.5955V16.6512C7 21.5418 9.63116 25.656 12.6239 28.5241C14.4865 30.3091 16.6657 31.7839 18.8044 32.7663C14.2327 40.8357 13.9577 42.3239 14.9252 46.1293C16.004 50.3712 17.4565 51.6905 27.3135 57.3815L35.3122 61.9995L36.8807 59.2829L38.4491 56.5662L31.245 52.4069C23.2883 47.8131 22.3863 46.9736 22.5106 44.2764C22.5553 43.3139 23.2085 41.7071 24.3824 39.6738L26.1861 36.5497L33.7592 40.922L41.3323 45.2943L42.9007 42.5777L44.4692 39.861L36.8961 35.4887L29.3231 31.1164L31.1268 27.9922C32.3007 25.959 33.3656 24.5899 34.1769 24.0699C36.4398 22.6204 37.6448 22.9845 45.3911 27.4568L52.401 31.5039L53.9695 28.7873L55.538 26.0706L47.472 21.4309C40.6005 17.4776 39.0275 16.7168 36.8471 16.2906C33.6318 15.6622 29.7876 16.7751 27.4583 19.0086C26.4087 20.0152 24.8349 22.383 21.8191 27.5351C20.2851 26.9106 18.4305 25.7784 16.7754 24.1922C14.4684 21.9813 13 19.3282 13 16.6512Z" fill={GREEN} />
+    </svg>
+  );
+}
+
+/* ── Dropdown ── */
+function DropdownPanel({ items, navRef }: { items: typeof leistungen; navRef: React.RefObject<HTMLElement | null> }) {
+  const [top, setTop] = useState(68);
+  const [left, setLeft] = useState(0);
+  const [width, setWidth] = useState("100vw");
+
+  useEffect(() => {
+    if (navRef.current) {
+      const rect = navRef.current.getBoundingClientRect();
+      setTop(rect.bottom);
+      setLeft(rect.left);
+      setWidth(`${rect.width}px`);
+    }
+  }, [navRef]);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top,
+        left,
+        width,
+        background: "rgba(19,22,38,0.97)",
+        backdropFilter: "blur(16px)",
+        borderTop: `1px solid rgba(141,198,63,0.3)`,
+        borderBottom: `1px solid rgba(255,255,255,0.04)`,
+        boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+        zIndex: 50,
+        padding: "28px 32px 32px",
+      }}
+    >
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${items.length}, 1fr)`, gap: 20 }}>
+        {items.map((item) => (
+          <a key={item.title} href="#" className="flex flex-col gap-3 group">
+            <div style={{ aspectRatio: "16/10", overflow: "hidden", borderRadius: 8, position: "relative" }}>
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ filter: "brightness(0.85)" }}
+              />
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: `linear-gradient(to top, rgba(141,198,63,0.15), transparent)` }}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="text-sm font-semibold leading-snug transition-colors duration-200 group-hover:text-[#a8cf4e]" style={{ color: "rgba(255,255,255,0.9)" }}>
+                {item.title}
+              </p>
+              <p className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.72)" }}>{item.sub}</p>
+            </div>
+            <div
+              className="h-px transition-all duration-300"
+              style={{ background: GREEN, width: "0%" }}
+              ref={el => {
+                if (el) {
+                  el.parentElement?.addEventListener("mouseenter", () => el.style.width = "100%");
+                  el.parentElement?.addEventListener("mouseleave", () => el.style.width = "0%");
+                }
+              }}
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NavItem({ label, items, navRef }: { label: string; items?: typeof leistungen; navRef: React.RefObject<HTMLElement | null> }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  if (!items) {
+    return (
+      <a
+        href="#"
+        className="relative text-sm font-medium whitespace-nowrap group"
+        style={{ color: "rgba(255,255,255,0.88)" }}
+        onMouseEnter={e => (e.currentTarget.style.color = "white")}
+        onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.88)")}
+      >
+        {label}
+        <span className="absolute -bottom-1 left-0 h-px w-0 group-hover:w-full transition-all duration-300" style={{ background: GREEN }} />
+      </a>
+    );
+  }
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="relative flex items-center gap-1 text-sm font-medium whitespace-nowrap group"
+        style={{ color: open ? "white" : "rgba(255,255,255,0.88)" }}
+        onMouseEnter={e => (e.currentTarget.style.color = "white")}
+        onMouseLeave={e => { if (!open) e.currentTarget.style.color = "rgba(255,255,255,0.88)"; }}
+      >
+        {label}
+        <ChevronDown
+          size={16}
+          style={{ transition: "transform .25s", transform: open ? "rotate(180deg)" : "none", color: open ? GREEN : "rgba(255,255,255,0.55)" }}
+        />
+        <span className="absolute -bottom-1 left-0 h-px transition-all duration-300" style={{ background: GREEN, width: open ? "100%" : "0%" }} />
+      </button>
+      {open && <DropdownPanel items={items} navRef={navRef} />}
+    </div>
+  );
+}
+
+/* ── Mobile menu ── */
+function MobileMenu({ onClose }: { onClose: () => void }) {
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const sections = [
+    { label: "Über uns", items: null },
+    { label: "Leistungen", items: leistungen },
+    { label: "Nachhaltigkeit & Energielösungen", items: energieloesungen },
+    { label: "Offene Stellen", items: null },
+  ];
+
+  return (
+    <div className="fixed inset-0 z-[999] flex flex-col" style={{ background: NAVY }}>
+
+      {/* Header: exact same height as navbar */}
+      <div className="flex-shrink-0 h-[68px] flex items-center justify-between px-6" style={{ borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
+        <Logo />
+        <button
+          onClick={onClose}
+          className="w-9 h-9 flex items-center justify-center rounded-full transition-colors"
+          style={{ background: "rgba(255,255,255,0.08)", color: "white", marginRight: "-7px" }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+        >
+          <X size={17} />
+        </button>
+      </div>
+
+      {/* Phone row */}
+      <a
+        href="tel:+4912345678"
+        className="flex-shrink-0 flex items-center gap-3 px-6 py-4 text-sm font-medium"
+        style={{ color: "white", borderBottom: `1px solid rgba(255,255,255,0.07)` }}
+      >
+        <Phone size={16} strokeWidth={2} style={{ color: GREEN }} />
+        +49 12345 6789
+      </a>
+
+      {/* Nav items */}
+      <div className="flex-1 overflow-y-auto">
+        {sections.map(({ label, items }) => (
+          <div key={label} style={{ borderBottom: `1px solid rgba(255,255,255,0.05)` }}>
+            {!items ? (
+              <a
+                href="#"
+                onClick={onClose}
+                className="flex items-center gap-3 px-6 py-[18px] text-sm font-medium transition-colors"
+                style={{ color: "rgba(255,255,255,0.88)" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "white")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.88)")}
+              >
+                <ArrowRight size={15} style={{ color: GREEN, flexShrink: 0 }} />
+                {label}
+              </a>
+            ) : (
+              <>
+                <button
+                  onClick={() => setOpenSection(openSection === label ? null : label)}
+                  className="flex items-center gap-3 w-full px-6 py-[18px] text-sm font-medium transition-colors"
+                  style={{ color: openSection === label ? "white" : "rgba(255,255,255,0.88)" }}
+                >
+                  <ChevronDown
+                    size={15}
+                    style={{
+                      color: openSection === label ? GREEN : "rgba(255,255,255,0.88)",
+                      transition: "transform .2s",
+                      transform: openSection === label ? "rotate(180deg)" : "none",
+                      flexShrink: 0,
+                    }}
+                  />
+                  {label}
+                </button>
+
+                {openSection === label && (
+                  <div style={{ background: "rgba(0,0,0,0.2)" }}>
+                    {items.map((item) => (
+                      <a
+                        key={item.title}
+                        href="#"
+                        onClick={onClose}
+                        className="flex items-center gap-4 px-6 py-3 group"
+                        style={{ borderTop: `1px solid rgba(255,255,255,0.04)` }}
+                      >
+                        <div style={{ width: 52, height: 36, borderRadius: 4, overflow: "hidden", flexShrink: 0 }}>
+                          <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-xs font-medium leading-snug group-hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.82)" }}>
+                            {item.title}
+                          </span>
+                          <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.72)" }}>{item.sub}</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Footer CTA */}
+      <div className="flex-shrink-0 px-6 py-5" style={{ borderTop: `1px solid rgba(255,255,255,0.06)` }}>
+        <a
+          href="#"
+          className="flex items-center justify-center w-full py-3 rounded text-sm font-bold transition-opacity hover:opacity-90"
+          style={{ background: `linear-gradient(135deg, ${GREEN}, ${GREEN_DIM})`, color: NAVY }}
+        >
+          Kontakt aufnehmen
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/* ── Navbar ── */
+export default function NavbarC() {
+  const [mobile, setMobile] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (mobile) {
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
+  }, [mobile]);
+
+  return (
+    <>
+      <nav ref={navRef} className="w-full h-[68px] flex items-center" style={{ background: NAVY }}>
+        <div className="w-full max-w-screen-xl mx-auto px-6 flex items-center gap-8">
+          <a href="#" className="flex-shrink-0"><Logo /></a>
+
+          {/* Desktop */}
+          <div className="hidden lg:flex items-center gap-7 flex-1">
+            <NavItem label="Über uns" navRef={navRef} />
+            <NavItem label="Leistungen" items={leistungen} navRef={navRef} />
+            <NavItem label="Nachhaltigkeit & Energielösungen" items={energieloesungen} navRef={navRef} />
+            <NavItem label="Offene Stellen" navRef={navRef} />
+          </div>
+          <div className="hidden lg:flex items-center gap-5 ml-auto">
+            <a
+              href="tel:+4912345678"
+              className="flex items-center gap-2 text-sm whitespace-nowrap transition-colors"
+              style={{ color: "rgba(255,255,255,0.72)" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "white")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.72)")}
+            >
+              <Phone size={16} strokeWidth={2} style={{ color: GREEN }} />&nbsp;+49 12345 6789
+            </a>
+            <a
+              href="#"
+              className="px-5 py-[7px] rounded text-sm font-bold transition-opacity hover:opacity-90"
+              style={{ background: `linear-gradient(135deg, ${GREEN}, ${GREEN_DIM})`, color: NAVY }}
+            >
+              Kontakt
+            </a>
+          </div>
+
+          {/* Tablet */}
+          <div className="hidden md:flex lg:hidden items-center gap-4 ml-auto">
+            <a href="tel:+4912345678" className="flex items-center gap-2 text-sm whitespace-nowrap" style={{ color: "rgba(255,255,255,0.72)" }}>
+              <Phone size={16} strokeWidth={2} style={{ color: GREEN }} />&nbsp;+49 12345 6789
+            </a>
+            <a href="#" className="px-4 py-[7px] rounded text-sm font-bold" style={{ background: `linear-gradient(135deg, ${GREEN}, ${GREEN_DIM})`, color: NAVY }}>Kontakt</a>
+            <button onClick={() => setMobile(true)} style={{ color: "rgba(255,255,255,0.72)" }}><Menu size={22} /></button>
+          </div>
+
+          {/* Small */}
+          <div className="hidden sm:flex md:hidden items-center gap-4 ml-auto">
+            <a href="tel:+4912345678" className="flex items-center gap-2 text-sm whitespace-nowrap" style={{ color: "rgba(255,255,255,0.72)" }}>
+              <Phone size={16} strokeWidth={2} style={{ color: GREEN }} />&nbsp;+49 12345 6789
+            </a>
+            <button onClick={() => setMobile(true)} style={{ color: "rgba(255,255,255,0.72)" }}><Menu size={22} /></button>
+          </div>
+
+          {/* XS */}
+          <div className="flex sm:hidden ml-auto">
+            <button onClick={() => setMobile(true)} style={{ color: "rgba(255,255,255,0.72)" }}><Menu size={22} /></button>
+          </div>
+        </div>
+      </nav>
+
+      {mobile && <MobileMenu onClose={() => setMobile(false)} />}
+    </>
+  );
+}
