@@ -181,27 +181,22 @@
 
     <section class="block" id="context" style="border-top: none; padding-top: 0;">
       <div class="block-label">01 · Context</div>
-      <h2>The setup</h2>
-      <ol style="padding-left: 20px; margin-bottom: 18px;">
-        <li style="margin-bottom: 14px;">I pasted six screenshots of an existing responsive navbar to Figma Make, covering desktop, tablet, two mobile breakpoints, and the mobile drawer overlay, then asked it to reproduce the component in code.</li>
-      </ol>
+      <h2>Setup and first review</h2>
+      <p>I imported six screenshots of an existing responsive navigation bar into Figma Make, covering desktop, tablet, two breakpoints for mobile devices, and the mobile drawer overlay, then asked the programme to recreate the component in code.</p>
 
       <div class="img-block">
         <img src="img/first-build-initial-output.png" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
         <div class="img-caption">The first result, before any review: logo already malformed, image already broken</div>
       </div>
 
-      <ol start="2" style="padding-left: 20px; margin-bottom: 18px;">
-        <li style="margin-bottom: 14px;">After assessing the output, I asked Figma Make whether it had copied the design one to one, improved on it, or produced something closer to a modern redesign. It gave a surprisingly candid answer: "closer to a faithful copy with small practical fixes," set against its own list of shortcomings, an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original.</li>
-        <li style="margin-bottom: 14px;">I decided to split the work into two explicit tracks: Version B for tightening fidelity, Version C for a deliberate, elevated redesign, rather than continuing to iterate in one undefined direction.</li>
-        <li>I continued with Version C and checked whether that self-assessment would hold up. It turned out to understate the gap: the logo, the nav alignment, and the typeface had all diverged more than "small fixes" implied, the first sign that a tool's account of its own work needs independent verification, not passive acceptance.</li>
-      </ol>
+      <p>After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The response was surprisingly honest: <em>"More of a <strong>faithful copy (!)</strong> with <strong>minor practical adjustments (!)</strong>,"</em> set against its own admitted shortcomings: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original.</p>
+      <p>Figma Make had underestimated the gap: the logo was far off from the original reference, more than just an approximation, and the alignment of the navigation and the typeface also diverged more than "minor adjustments" implied. This was an initial indication that a tool's assessment of its own work requires independent verification rather than passive acceptance.</p>
     </section>
 
     <section class="block" id="findings">
       <div class="block-label">02 · Findings</div>
-      <h2>What a structured review caught</h2>
-      <p>Five findings emerged, each belonging to one of two failure modes: <strong>missing input</strong>, where the tool guessed confidently from incomplete source material, or <strong>unverified output</strong>, where a claim needed to be checked against reality before it could be trusted.</p>
+      <h2>Shortcomings of the rework</h2>
+      <p>After reviewing the redesign more thoroughly, all in all five findings emerged, each belonging to one of two failure modes: <strong>missing input</strong>, where the tool guessed confidently from incomplete source material, or <strong>unverified output</strong>, where a claim needed to be checked against reality before it could be trusted.</p>
 
       <div class="process">
 
@@ -210,7 +205,7 @@
           <div>
             <span class="step-tag missing-input">Missing input</span>
             <div class="step-title">A logo guessed wrong twice</div>
-            <p class="step-body">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P", a different malformed arc traced to a misplaced SVG control point. Neither was resolved by the tool reasoning its way to a fix. The correct mark appeared only once the actual Logotype.svg was uploaded directly. The tool had never seen the real asset, only a shape inferred from screenshots.</p>
+            <p class="step-body">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P". Neither was resolved by the tool reasoning its way to a fix, and neither was accurately flagged: the tool described the logo as "close but not exact," when it wasn't close at all, it had rendered a different letterform entirely. The tool had never seen the real asset, only a shape inferred from screenshots. My logo design, an "E" resembling a power socket and tilted slightly to the right, was evidently not legible enough from screenshots alone for the tool to interpret, and so it could not be recreated properly. The correct mark appeared only once the actual Logotype.svg was uploaded directly.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
                 <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a broken P shape instead of the intended E mark" onclick="openLightbox(this.src)">
