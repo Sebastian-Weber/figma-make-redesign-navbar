@@ -53,7 +53,8 @@
     .hero-sub { font-size: 20px; color: var(--muted); font-style: italic; max-width: 580px; line-height: 1.65; margin-bottom: 40px; }
     .meta-row { display: flex; flex-wrap: wrap; gap: 24px; }
     .meta-item { display: flex; flex-direction: column; gap: 3px; }
-    .hero-image { margin-top: 40px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--white); box-shadow: 0 16px 40px rgba(15,17,23,0.06); }
+    .hero-image { margin-top: 40px; border: 1px solid var(--border); overflow: hidden; background: var(--white); box-shadow: 0 16px 40px rgba(15,17,23,0.06); }
+    .hero-image a, .img-block a, .img-grid-item a { display: block; cursor: zoom-in; }
     .hero-image img { width: 100%; display: block; }
     .meta-box { display: grid; grid-template-columns: 1fr 1fr; row-gap: 28px; column-gap: 24px; border: 1.5px dashed var(--border); border-radius: 16px; padding: 28px 40px; margin-top: 32px; }
     .meta-col { text-align: center; }
@@ -70,10 +71,10 @@
     ol { font-size: 15px; color: var(--text); line-height: 1.75; }
     .callout { background: #F5E5E0; color: var(--dark); padding: 24px 28px; border-radius: 12px; margin: 32px 0; font-style: italic; font-size: 18px; line-height: 1.5; font-weight: 300; border-left: 4px solid #C87255; }
     .img-block { margin: 28px 0; }
-    .img-block img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
+    .img-block img { width: 100%; border: 1px solid var(--border); display: block; }
     .img-caption { font-size: 11px; color: var(--muted); margin-top: 8px; font-weight: 500; letter-spacing: 0.04em; }
     .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
-    .img-grid-item img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
+    .img-grid-item img { width: 100%; border: 1px solid var(--border); display: block; }
     .img-grid-item .img-caption { font-size: 11px; color: var(--muted); margin-top: 8px; font-weight: 500; }
     .process { display: grid; gap: 16px; margin: 28px 0; }
     .process-step { background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 22px 24px; display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
@@ -145,7 +146,7 @@
     <h1>Reviewing AI-Generated Code Like a Design Review</h1>
     <p class="hero-sub">I had Figma Make rebuild a responsive navbar from six screenshots. The output looked plausible at first glance. The review is where it got interesting.</p>
     <div class="hero-image">
-      <img src="img/hero-navbar-final.png" alt="Final responsive navbar rebuilt in Figma Make, dark navy background with lime green logo and navigation links, dropdown open showing four energy service cards">
+      <img src="img/hero-navbar-final.png" alt="Final responsive navbar rebuilt in Figma Make, dark navy background with lime green logo and navigation links, dropdown open showing four energy service cards" onclick="openLightbox(this.src)">
     </div>
     <div class="meta-box">
       <div class="meta-col">
@@ -177,7 +178,7 @@
       </ol>
 
       <div class="img-block">
-        <img src="img/first-build-initial-output.png" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo">
+        <img src="img/first-build-initial-output.png" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
         <div class="img-caption">The first result, before any review: logo already malformed, image already broken</div>
       </div>
 
@@ -200,14 +201,14 @@
           <div>
             <span class="step-tag missing-input">Missing input</span>
             <div class="step-title">A logo guessed wrong twice</div>
-            <p class="step-body">The very first output already showed it: the mark rendered as "E)", a malformed arc, visible in the initial build before any review began. A later version rendered it as "P", a different malformed arc traced to a misplaced SVG control point. Neither was resolved by the tool reasoning its way to a fix. The correct mark appeared only once the actual Logotype.svg was uploaded directly. The tool had never seen the real asset, only a shape inferred from screenshots.</p>
+            <p class="step-body">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P", a different malformed arc traced to a misplaced SVG control point. Neither was resolved by the tool reasoning its way to a fix. The correct mark appeared only once the actual Logotype.svg was uploaded directly. The tool had never seen the real asset, only a shape inferred from screenshots.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a broken P shape instead of the intended E mark">
+                <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a broken P shape instead of the intended E mark" onclick="openLightbox(this.src)">
                 <div class="img-caption">Before · logo rendered as "P"</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/logo-fixed-e.png" alt="Mobile menu with the logo correctly rendering as the intended E mark">
+                <img src="img/logo-fixed-e.png" alt="Mobile menu with the logo correctly rendering as the intended E mark" onclick="openLightbox(this.src)">
                 <div class="img-caption">After · uploaded the original SVG directly</div>
               </div>
             </div>
@@ -247,11 +248,11 @@
             <p class="step-body">The original reference had no phone number in the mobile menu at all, and its chevrons sat on the right too, same as Figma Make's version. What made the original intelligible despite not being optimized for mobile wasn't alignment, it was proximity: each chevron sat directly against its label, so the two read as one grouped unit. Figma Make kept the right-side placement but lost that closeness, pushing the chevrons out toward the far edge, disconnected from the label they belonged to, and added a phone number that didn't exist in the reference at all, dropped in at the bottom of the menu where it read as an afterthought. The tool was candid about the second problem once asked: an attempt to make the chevrons "subtle" had left them looking disconnected instead.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/mobile-menu-original-ref.png" alt="Original reference mobile menu with chevrons grouped directly against their labels and no phone number present">
+                <img src="img/mobile-menu-original-ref.png" alt="Original reference mobile menu with chevrons grouped directly against their labels and no phone number present" onclick="openLightbox(this.src)">
                 <div class="img-caption">Original reference · chevrons grouped with their labels, no phone number</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/mobile-menu-figma-make-misplaced.png" alt="Figma Make's reworked mobile menu with chevrons pushed to the far right, disconnected from their labels, and a phone number isolated at the bottom">
+                <img src="img/mobile-menu-figma-make-misplaced.png" alt="Figma Make's reworked mobile menu with chevrons pushed to the far right, disconnected from their labels, and a phone number isolated at the bottom" onclick="openLightbox(this.src)">
                 <div class="img-caption">Figma Make's rework · chevrons pushed to the edge, phone number isolated</div>
               </div>
             </div>
@@ -263,9 +264,9 @@
           <div>
             <span class="step-tag unverified-output">Unverified output</span>
             <div class="step-title">A broken image that no design review would have found</div>
-            <p class="step-body">One dropdown card, for Solaranlagen-Installation, pointed to a dead image URL, visible in that same very first output shown above. It survived multiple iterations and two separate design tracks without being noticed. Catching it had nothing to do with reviewing color, contrast, or hierarchy. It required a different kind of check altogether: simply confirming whether the content rendered at all.</p>
+            <p class="step-body">One dropdown card, for Solaranlagen-Installation, pointed to a dead image URL, a defect present since the very first build that survived multiple iterations and two separate design tracks without being noticed. Catching it had nothing to do with reviewing color, contrast, or hierarchy. It required a different kind of check altogether: simply confirming whether the content rendered at all.</p>
             <div class="img-block" style="margin-top: 16px;">
-              <img src="img/broken-image-card.png" alt="Dropdown card showing a broken image placeholder icon instead of a solar panel photo">
+              <img src="img/broken-image-card.png" alt="Dropdown card showing a broken image placeholder icon instead of a solar panel photo" onclick="openLightbox(this.src)">
               <div class="img-caption">The Solaranlagen-Installation card, image never loaded</div>
             </div>
           </div>
