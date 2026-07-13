@@ -67,6 +67,7 @@
     .block-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--coral); margin-bottom: 16px; }
     h2 { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 20px; letter-spacing: -0.01em; line-height: 1.3; }
     p { font-size: 15px; color: var(--text); margin-bottom: 18px; line-height: 1.75; }
+    ol { font-size: 15px; color: var(--text); line-height: 1.75; }
     .callout { background: #F5E5E0; color: var(--dark); padding: 24px 28px; border-radius: 12px; margin: 32px 0; font-style: italic; font-size: 18px; line-height: 1.5; font-weight: 300; border-left: 4px solid #C87255; }
     .img-block { margin: 28px 0; }
     .img-block img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
@@ -168,28 +169,29 @@
 
   <main class="content">
 
-    <section class="block" style="border-top: none; padding-top: 0;">
-      <div style="background: var(--neutral); border-radius: 12px; padding: 28px 32px; border-left: 4px solid var(--coral);">
-        <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--coral); margin-bottom: 14px;">What this case study is actually about</div>
-        <ul style="margin-bottom: 16px; padding-left: 20px; font-size: 15px; line-height: 1.75;">
-          <li>This case study looks at what goes wrong when an AI-assisted redesign is trusted without review.</li>
-          <li>Six findings came out of it. Each one falls into one of two categories: input the tool never had, or output nobody checked before trusting it.</li>
-          <li>The second category is the one worth paying attention to. It's not about the tool being wrong. It's about what happens when nobody looks closely enough to find out.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="block" id="context">
+    <section class="block" id="context" style="border-top: none; padding-top: 0;">
       <div class="block-label">01 · Context</div>
       <h2>The setup</h2>
-      <p>Figma Make was given six screenshots of an existing responsive navbar, covering desktop, tablet, two mobile breakpoints, and the mobile drawer overlay, then asked to reproduce the component in code. There was no design system context and no Figma file behind it, only images.</p>
-      <p>Asked directly whether it had copied the design one to one, improved on it, or produced something closer to a modern redesign, the tool gave an answer worth taking at face value: closer to a faithful copy with small practical fixes, tempered by real incoherencies in dropdown panel width and card proportions, and an approximated logo. That self-assessment prompted a decision to split the work into two explicit tracks, Version B for tightening fidelity, Version C for a deliberate, elevated redesign, rather than continuing to iterate in one undefined direction.</p>
+      <ol style="padding-left: 20px; margin-bottom: 18px;">
+        <li style="margin-bottom: 14px;">I pasted six screenshots of an existing responsive navbar to Figma Make, covering desktop, tablet, two mobile breakpoints, and the mobile drawer overlay, then asked it to reproduce the component in code.</li>
+      </ol>
+
+      <div class="img-block">
+        <img src="img/first-build-initial-output.png" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo">
+        <div class="img-caption">The first result, before any review: logo already malformed, image already broken</div>
+      </div>
+
+      <ol start="2" style="padding-left: 20px; margin-bottom: 18px;">
+        <li style="margin-bottom: 14px;">After assessing the output, I asked Figma Make whether it had copied the design one to one, improved on it, or produced something closer to a modern redesign. It gave a surprisingly candid answer: "closer to a faithful copy with small practical fixes," set against its own list of shortcomings, an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original.</li>
+        <li style="margin-bottom: 14px;">I decided to split the work into two explicit tracks: Version B for tightening fidelity, Version C for a deliberate, elevated redesign, rather than continuing to iterate in one undefined direction.</li>
+        <li>I continued with Version C and checked whether that self-assessment would hold up. It turned out to understate the gap: the logo, the nav alignment, and the typeface had all diverged more than "small fixes" implied, the first sign that a tool's account of its own work needs independent verification, not passive acceptance.</li>
+      </ol>
     </section>
 
     <section class="block" id="findings">
       <div class="block-label">02 · Findings</div>
       <h2>What a structured review caught</h2>
-      <p>Six findings emerged, each belonging to one of two failure modes: <strong>missing input</strong>, where the tool guessed confidently from incomplete source material, or <strong>unverified output</strong>, where a claim needed to be checked against reality before it could be trusted.</p>
+      <p>Five findings emerged, each belonging to one of two failure modes: <strong>missing input</strong>, where the tool guessed confidently from incomplete source material, or <strong>unverified output</strong>, where a claim needed to be checked against reality before it could be trusted.</p>
 
       <div class="process">
 
@@ -198,7 +200,7 @@
           <div>
             <span class="step-tag missing-input">Missing input</span>
             <div class="step-title">A logo guessed wrong twice</div>
-            <p class="step-body">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P", a different malformed arc traced to a misplaced SVG control point. Neither was resolved by the tool reasoning its way to a fix. The correct mark appeared only once the actual Logotype.svg was uploaded directly. The tool had never seen the real asset, only a shape inferred from screenshots.</p>
+            <p class="step-body">The very first output already showed it: the mark rendered as "E)", a malformed arc, visible in the initial build before any review began. A later version rendered it as "P", a different malformed arc traced to a misplaced SVG control point. Neither was resolved by the tool reasoning its way to a fix. The correct mark appeared only once the actual Logotype.svg was uploaded directly. The tool had never seen the real asset, only a shape inferred from screenshots.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
                 <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a broken P shape instead of the intended E mark">
@@ -218,7 +220,10 @@
             <span class="step-tag missing-input">Missing input</span>
             <div class="step-title">A typeface question that resolved into something more precise</div>
             <p class="step-body">The rendered nav text came out noticeably narrower and more tightly tracked than the original. Checking the browser's computed style panel for the nav element directly showed it renders with ui-sans-serif, system-ui, sans-serif, Tailwind's default stack. The nav never had a custom typeface in the first place. Figma Make's own account of its process was candid about the same gap: working from screenshots alone, without OCR or font-detection tools, it landed on Inter as a visual judgment call, which happens to closely resemble the system-UI fonts it was actually looking at.</p>
-            <p class="step-body" style="margin-top: 10px;">That correction opened a real design decision: keep Inter, or revert to the same bare system stack the original used. A system stack renders differently by design across operating systems, San Francisco on macOS, Segoe UI on Windows, Roboto on Android, which works against a branded site's consistency. Inter was built specifically for screen UI, costs roughly 30KB with display=swap, and closely resembles the system fonts it was mistaken for in the first place, so it was kept.</p>
+            <div class="img-block" style="margin: 16px 0; border: 1.5px dashed var(--border); border-radius: 10px; padding: 40px; text-align: center; background: var(--neutral);">
+              <div style="font-size: 12px; color: var(--muted); font-weight: 600;">[ Image placeholder: computed style panel showing the system font stack, or a side-by-side type comparison ]</div>
+            </div>
+            <p class="step-body">That correction opened a real design decision: keep Inter, or revert to the same bare system stack the original used. A system stack renders differently by design across operating systems, San Francisco on macOS, Segoe UI on Windows, Roboto on Android, which works against a branded site's consistency. Inter was built specifically for screen UI, costs roughly 30KB with display=swap, and closely resembles the system fonts it was mistaken for in the first place, so it was kept.</p>
           </div>
         </div>
 
@@ -226,8 +231,11 @@
           <div class="step-num">3</div>
           <div>
             <span class="step-tag unverified-output">Unverified output</span>
-            <div class="step-title">A fidelity claim that didn't survive scrutiny</div>
-            <p class="step-body">The tool described its own output as "closer to a faithful copy with small practical fixes." Set against the actual screenshots, the logo, the nav alignment (centered at first, later left-aligned), and the typeface had all diverged more than that description implied. The tool's account of its own work needed checking against the result, not taken at face value.</p>
+            <div class="step-title">Contrast values checked with numbers, not a glance</div>
+            <p class="step-body">Two text elements failed WCAG AA once measured directly: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
+            <div class="img-block" style="margin-top: 16px; border: 1.5px dashed var(--border); border-radius: 10px; padding: 40px; text-align: center; background: var(--neutral);">
+              <div style="font-size: 12px; color: var(--muted); font-weight: 600;">[ Image placeholder: before/after contrast fix, or the measured ratio comparison ]</div>
+            </div>
           </div>
         </div>
 
@@ -235,8 +243,18 @@
           <div class="step-num">4</div>
           <div>
             <span class="step-tag unverified-output">Unverified output</span>
-            <div class="step-title">Contrast values checked with numbers, not a glance</div>
-            <p class="step-body">Two text elements failed WCAG AA once measured directly: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
+            <div class="step-title">A mobile hierarchy that needed a why, not just a what</div>
+            <p class="step-body">The original reference had no phone number in the mobile menu at all, and its chevrons sat on the right too, same as Figma Make's version. What made the original intelligible despite not being optimized for mobile wasn't alignment, it was proximity: each chevron sat directly against its label, so the two read as one grouped unit. Figma Make kept the right-side placement but lost that closeness, pushing the chevrons out toward the far edge, disconnected from the label they belonged to, and added a phone number that didn't exist in the reference at all, dropped in at the bottom of the menu where it read as an afterthought. The tool was candid about the second problem once asked: an attempt to make the chevrons "subtle" had left them looking disconnected instead.</p>
+            <div class="img-grid" style="margin-top: 16px;">
+              <div class="img-grid-item">
+                <img src="img/mobile-menu-original-ref.png" alt="Original reference mobile menu with chevrons grouped directly against their labels and no phone number present">
+                <div class="img-caption">Original reference · chevrons grouped with their labels, no phone number</div>
+              </div>
+              <div class="img-grid-item">
+                <img src="img/mobile-menu-figma-make-misplaced.png" alt="Figma Make's reworked mobile menu with chevrons pushed to the far right, disconnected from their labels, and a phone number isolated at the bottom">
+                <div class="img-caption">Figma Make's rework · chevrons pushed to the edge, phone number isolated</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -244,27 +262,8 @@
           <div class="step-num">5</div>
           <div>
             <span class="step-tag unverified-output">Unverified output</span>
-            <div class="step-title">A mobile hierarchy that needed a why, not just a what</div>
-            <p class="step-body">The phone number sat at the end of the menu, treated as a minor utility item, which made little sense for a business where a call is usually the primary conversion, so it moved to the top. The chevrons were right-aligned, small, and dim, a choice the tool itself described candidly: an attempt to make them subtle had left them looking like an afterthought instead. They moved left and were resized to match the surrounding text.</p>
-            <div class="img-grid" style="margin-top: 16px;">
-              <div class="img-grid-item">
-                <img src="img/mobile-menu-before.png" alt="Mobile menu with phone number placed centrally and chevrons in circular badges to the right of each label">
-                <div class="img-caption">Before · phone relocated but chevrons still right-aligned</div>
-              </div>
-              <div class="img-grid-item">
-                <img src="img/mobile-menu-after.png" alt="Mobile menu with phone number pinned below the header and chevrons to the left of each label">
-                <div class="img-caption">After · phone at top, chevrons left, matching desktop</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-num">6</div>
-          <div>
-            <span class="step-tag unverified-output">Unverified output</span>
             <div class="step-title">A broken image that no design review would have found</div>
-            <p class="step-body">One dropdown card, for Solaranlagen-Installation, pointed to a dead image URL, a defect present since the very first build that survived multiple iterations and two separate design tracks without being noticed. Catching it had nothing to do with reviewing color, contrast, or hierarchy. It required a different kind of check altogether: simply confirming whether the content rendered at all.</p>
+            <p class="step-body">One dropdown card, for Solaranlagen-Installation, pointed to a dead image URL, visible in that same very first output shown above. It survived multiple iterations and two separate design tracks without being noticed. Catching it had nothing to do with reviewing color, contrast, or hierarchy. It required a different kind of check altogether: simply confirming whether the content rendered at all.</p>
             <div class="img-block" style="margin-top: 16px;">
               <img src="img/broken-image-card.png" alt="Dropdown card showing a broken image placeholder icon instead of a solar panel photo">
               <div class="img-caption">The Solaranlagen-Installation card, image never loaded</div>
@@ -279,39 +278,12 @@
       <div class="block-label">03 · Takeaway</div>
       <h2>Two failure modes, and the instinct that tells them apart</h2>
 
-      <table class="findings">
-        <tr><th>#</th><th>Finding</th><th>Category</th><th>Fix</th></tr>
-        <tr><td>1</td><td>Logo rendered incorrectly (two malformed states)</td><td>Missing input</td><td>Uploaded original Logotype.svg</td></tr>
-        <tr><td>2</td><td>Typeface didn't match the original</td><td>Missing input</td><td>Confirmed no custom font applied, via computed style panel</td></tr>
-        <tr><td>3</td><td>Overstated fidelity self-assessment</td><td>Unverified output</td><td>Verify claims against screenshots directly</td></tr>
-        <tr><td>4</td><td>Two WCAG AA contrast failures</td><td>Unverified output</td><td>Raised opacity to ~0.55 (~6.2:1)</td></tr>
-        <tr><td>5</td><td>Mobile hierarchy reversed</td><td>Unverified output</td><td>Repositioned phone number and chevrons</td></tr>
-        <tr><td>6</td><td>Broken image since the first build</td><td>Unverified output</td><td>Replaced with a working image</td></tr>
-      </table>
-
-      <p>Two distinct failure modes ran through this project:</p>
-      <div class="process">
-        <div class="process-step">
-          <div class="step-num">A</div>
-          <div>
-            <div class="step-title">Missing input</div>
-            <p class="step-body">Describes the logo problem: the tool guessed confidently from incomplete source material and never signaled that it was guessing, so the fix was supplying the real asset rather than refining the prompt. Both the logo and the font question, once traced to their actual source, resolved faster by pulling the original SVG and checking the computed style directly than any further round of prompting or iteration would have. Guessing and correcting a guess costs more turns than simply going to the file.</p>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="step-num">B</div>
-          <div>
-            <div class="step-title">Unverified output</div>
-            <p class="step-body">Covers the contrast failures, the hierarchy problems, and the broken image. Each one only came to light because something specific got checked instead of just trusted: a contrast ratio, the reasoning behind a design choice, or whether an image actually loads.</p>
-          </div>
-        </div>
-      </div>
+      <p><strong>Missing input</strong> describes the logo and font problems: the tool guessed confidently from incomplete source material and never signaled that it was guessing. Both resolved faster by going straight to the actual source, the SVG file, the computed style panel, than any further round of prompting would have. <strong>Unverified output</strong> covers the contrast failures, the hierarchy problems, and the broken image: each one only came to light because something specific got checked instead of just trusted.</p>
 
       <div class="callout">What actually transfers here is the diagnostic instinct: recognizing which of these two failure modes, missing input or unverified output, is in front of you, and knowing which kind of check that calls for.</div>
 
-      <div class="disclaimer">
-        Prospect, not a finding: whether the same approach extends to performance (image sizing, render-blocking resources, load times) is untested here. Left open rather than asserted.
-      </div>
+      <p>Scope note: everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning. A line-by-line audit of the underlying implementation might be added later on.</p>
+      <p>Prospect, not a finding: whether the same approach extends to performance (image sizing, render-blocking resources, load times) is untested here. Left open rather than asserted.</p>
     </section>
 
     <div class="cta-block">
