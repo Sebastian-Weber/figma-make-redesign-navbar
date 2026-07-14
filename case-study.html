@@ -25,7 +25,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="sw_favicon32.svg">
-  <title>Case Study: Reviewing AI-Generated Code Like a Design Review | Sebastian Weber</title>
+  <title>Case Study: Human Review of an AI-Generated Redesign | Sebastian Weber</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
@@ -140,11 +140,12 @@
   </div>
 
   <nav>
-    <a href="index.html" class="nav-logo" style="display:flex;align-items:center;line-height:0;margin-right:8px;"><svg width="40" height="40" style="display:block;margin-top:-2px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 19.0413V20.7092L15.9986 26.8336V25.3991L11.7131 23.7928V23.7848L10.3368 23.2366L1.51283 19.9819L10.3384 16.7504V16.7576L11.7146 16.2587L16.0001 14.6524V13.1113L0 19.0413Z" fill="#0F1117"/><path d="M16.0001 24.0696V22.4023L0 16.2773V17.7113L4.2859 19.317V19.3279L5.66227 19.8759L14.4871 23.1294L5.66227 26.3619V26.3546L4.2859 26.8534L0 28.4591V29.9996L16.0001 24.0696Z" fill="#0F1117"/><path d="M20.3237 26.8333H22.1382L28.8006 11H27.2401L25.4927 15.242H25.4809L24.8844 16.6032L21.3438 25.3361L17.826 16.6032H17.8339L17.2911 15.242L15.5436 11H13.8672L20.3237 26.8333Z" fill="#0F1117"/><path d="M23.5229 26.8333H25.3374L31.9998 11H30.4394L28.6919 15.2418H28.6801L28.0837 16.603L24.543 25.3354L21.0252 16.603H21.0331L20.4903 15.2418L18.7429 11H17.0664L23.5229 26.8333Z" fill="#0F1117"/></svg></a>
+    <a href="https://sebastian-weber.github.io/uxui-portfolio/" class="nav-logo" style="display:flex;align-items:center;line-height:0;margin-right:8px;"><svg width="40" height="40" style="display:block;margin-top:-2px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 19.0413V20.7092L15.9986 26.8336V25.3991L11.7131 23.7928V23.7848L10.3368 23.2366L1.51283 19.9819L10.3384 16.7504V16.7576L11.7146 16.2587L16.0001 14.6524V13.1113L0 19.0413Z" fill="#0F1117"/><path d="M16.0001 24.0696V22.4023L0 16.2773V17.7113L4.2859 19.317V19.3279L5.66227 19.8759L14.4871 23.1294L5.66227 26.3619V26.3546L4.2859 26.8534L0 28.4591V29.9996L16.0001 24.0696Z" fill="#0F1117"/><path d="M20.3237 26.8333H22.1382L28.8006 11H27.2401L25.4927 15.242H25.4809L24.8844 16.6032L21.3438 25.3361L17.826 16.6032H17.8339L17.2911 15.242L15.5436 11H13.8672L20.3237 26.8333Z" fill="#0F1117"/><path d="M23.5229 26.8333H25.3374L31.9998 11H30.4394L28.6919 15.2418H28.6801L28.0837 16.603L24.543 25.3354L21.0252 16.603H21.0331L20.4903 15.2418L18.7429 11H17.0664L23.5229 26.8333Z" fill="#0F1117"/></svg></a>
     <ul class="nav-links">
       <li><span class="nav-tag-coral">Case Study</span></li>
       <li><a href="#context">Context</a></li>
       <li><a href="#findings">Findings</a></li>
+      <li><a href="#improvements">Improvements</a></li>
       <li><a href="#takeaway">Takeaway</a></li>
       <li><a href="https://sebastian-weber.github.io/uxui-portfolio/" class="nav-cta">All Projects &rarr;</a></li>
     </ul>
@@ -152,7 +153,7 @@
 
   <section class="hero">
     <div class="hero-label">Case Study</div>
-    <h1>Reviewing AI-Generated Code Like a Design Review</h1>
+    <h1>Human Review of an AI-Generated Redesign</h1>
     <p class="hero-sub">I had Figma Make rebuild a responsive navbar from six screenshots. The output looked plausible at first glance. The review is where it got interesting.</p>
     <div class="hero-image">
       <img src="img/before-after.png" alt="Before and after comparison" onclick="openLightbox(this.src)">
@@ -189,7 +190,7 @@
         <div class="img-caption">The first result, before any review: logo already malformed, image already broken</div>
       </div>
 
-      <p>After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The response was surprisingly honest: <em>"More of a <strong>faithful copy (!)</strong> with <strong>minor practical adjustments (!)</strong>,"</em> set against its own admitted shortcomings: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original.</p>
+      <p>After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) set against Figma Make's own admitted shortcomings: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original, this claim isn't true. Figma Make really showed a poor call of judgment.</p>
       <p>Figma Make had underestimated the gap: the logo was far off from the original reference, more than just an approximation, and the alignment of the navigation and the typeface also diverged more than "minor adjustments" implied. This was an initial indication that a tool's assessment of its own work requires independent verification rather than passive acceptance.</p>
     </section>
 
@@ -208,12 +209,12 @@
             <p class="step-body">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P". Neither was resolved by the tool reasoning its way to a fix, and neither was accurately flagged: the tool described the logo as "close but not exact," when it wasn't close at all, it had rendered a different letterform entirely. The tool had never seen the real asset, only a shape inferred from screenshots. My logo design, an "E" resembling a power socket and tilted slightly to the right, was evidently not legible enough from screenshots alone for the tool to interpret, and so it could not be recreated properly. The correct mark appeared only once the actual Logotype.svg was uploaded directly.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a broken P shape instead of the intended E mark" onclick="openLightbox(this.src)">
-                <div class="img-caption">Before · logo rendered as "P"</div>
+                <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a malformed P-like shape" onclick="openLightbox(this.src)">
+                <div class="img-caption">First malformed state · rendered as "P"</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/logo-fixed-e.png" alt="Mobile menu with the logo correctly rendering as the intended E mark" onclick="openLightbox(this.src)">
-                <div class="img-caption">After · uploaded the original SVG directly</div>
+                <img src="img/logo-fixed-e.png" alt="Mobile menu with the logo rendering as a different malformed shape" onclick="openLightbox(this.src)">
+                <div class="img-caption">Second malformed state · a different broken arc, not the actual fix</div>
               </div>
             </div>
           </div>
@@ -277,10 +278,23 @@
         </div>
 
       </div>
+
+      <p><strong>Conclusion:</strong> visual polish came before accessibility. The contrast failures are the clearest evidence, two text elements shipped below WCAG AA while gradients and hover animation got the attention. The same gap shows in the mobile menu: proximity worked in the desktop dropdown cards, but broke down there.</p>
+    </section>
+
+    <section class="block" id="improvements">
+      <div class="block-label">03 · Where It Helped</div>
+      <h2>Where Figma Make actually improved the original</h2>
+      <p>Not every part of this was a correction. A few things genuinely moved the design forward:</p>
+      <ul style="padding-left: 20px; margin-bottom: 18px;">
+        <li style="margin-bottom: 10px;"><strong>A more modern-looking visual design overall</strong>, the scroll-aware navbar, the gradient CTA button, and the animated hover states gave the component a visual polish the original reference screenshots never had.</li>
+        <li style="margin-bottom: 10px;"><strong>Research into, and partial selection and implementation of, more stylish imagery</strong>, several service cards were swapped from generic or mismatched stock photos to images that fit the actual service and read as more German and more commercial, a real improvement even where the first attempt fell short.</li>
+        <li><strong>A more complete mobile-friendly layout</strong>, the full-screen mobile overlay with expandable accordion sections gave the mobile experience more structure than a simple stacked list would have.</li>
+      </ul>
     </section>
 
     <section class="block" id="takeaway">
-      <div class="block-label">03 · Takeaway</div>
+      <div class="block-label">04 · Takeaway</div>
       <h2>Two failure modes, and the instinct that tells them apart</h2>
 
       <p><strong>Missing input</strong> describes the logo and font problems: the tool guessed confidently from incomplete source material and never signaled that it was guessing. Both resolved faster by going straight to the actual source, the SVG file, the computed style panel, than any further round of prompting would have. <strong>Unverified output</strong> covers the contrast failures, the hierarchy problems, and the broken image: each one only came to light because something specific got checked instead of just trusted.</p>
@@ -288,6 +302,16 @@
       <div class="callout">What actually transfers here is the diagnostic instinct: recognizing which of these two failure modes, missing input or unverified output, is in front of you, and knowing which kind of check that calls for.</div>
 
       <p>Everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning, not a line-by-line audit of the underlying implementation, that might be added later on. One open question also stays open rather than asserted: whether the same approach extends to performance, image sizing, render-blocking resources, load times, is untested here.</p>
+    </section>
+
+    <section class="block" id="todo">
+      <div class="block-label">05 · To Do</div>
+      <h2>Still open</h2>
+      <ul style="padding-left: 20px; margin-bottom: 0;">
+        <li style="margin-bottom: 10px;">Navbar and React app code review</li>
+        <li style="margin-bottom: 10px;">Show redesigned logos only as cut-outs</li>
+        <li style="margin-bottom: 10px;">After-image fix description</li>
+      </ul>
     </section>
 
     <div class="cta-block">
