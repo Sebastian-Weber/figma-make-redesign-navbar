@@ -190,7 +190,7 @@
         <div class="img-caption">The first result, before any review: logo already malformed, image already broken</div>
       </div>
 
-      <p>After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) set against its own admitted shortcomings, an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original, this claim isn't true, a poor call of judgment.</p>
+      <p>After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) It admitted its own shortcomings in the same breath: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original. Set against those admissions, the claim isn't true. A poor call of judgment.</p>
       <p>From there I had it produce two separate variants: Version B, staying close to the original reference, and Version C, a more visually ambitious rework. The gap had been underestimated: the logo was far off from the original reference, more than just an approximation, and the alignment of the navigation and the typeface also diverged more than "minor adjustments" implied, an initial indication that a tool's assessment of its own work requires independent verification rather than passive acceptance.</p>
     </section>
 
@@ -219,7 +219,7 @@
           <div>
             <span class="step-tag unverified-output">Unverified output</span>
             <div class="step-title">Contrast values checked with numbers, not a glance</div>
-            <p class="step-body">To explore two different directions from the same source, I had Figma Make produce two variants: Version B, a closer iteration meant to stay faithful to the original reference, including its accessibility decisions, and Version C, a more visually ambitious rework. Checking contrast values directly rather than trusting the render, Version B held up: it preserved the accessibility choices already present in the reference design. Version C didn't. Two text elements failed WCAG AA once measured: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
+            <p class="step-body">Checking contrast values directly rather than trusting the render, Version B held up: it preserved the accessibility choices already present in the reference design. Version C didn't. Two text elements failed WCAG AA once measured: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
                 <img src="img/version-b-high-contrast.png" alt="Version B phone number and Kontakt button in full white and green, high contrast against the dark background" onclick="openLightbox(this.src)">
@@ -276,17 +276,14 @@
           <div>
             <span class="step-tag missing-input">Missing input</span>
             <div class="step-title">A typeface question that resolved into something more precise</div>
-            <p class="step-body">The rendered nav text came out noticeably narrower and more tightly tracked than the original. Checking the browser's computed style panel for the nav element directly showed it renders with ui-sans-serif, system-ui, sans-serif, Tailwind's default stack. The nav never had a custom typeface in the first place. Figma Make's own account of its process was candid about the same gap: working from screenshots alone, without OCR or font-detection tools, it landed on Inter as a visual judgment call, which happens to closely resemble the system-UI fonts it was actually looking at.</p>
-            <div class="img-block" style="margin: 16px 0; border: 1.5px dashed var(--border); border-radius: 10px; padding: 40px; text-align: center; background: var(--neutral);">
-              <div style="font-size: 12px; color: var(--muted); font-weight: 600;">[ Image placeholder: computed style panel showing the system font stack, or a side-by-side type comparison ]</div>
+            <p class="step-body">The rendered nav text came out narrower and more tightly tracked than the original. The browser's computed style panel showed why: the nav renders with Tailwind's default stack, ui-sans-serif, system-ui, sans-serif, no custom typeface at all. Figma Make was candid about the gap: working from screenshots alone, without OCR or font-detection tools, it landed on Inter as a visual guess, which happens to resemble the system fonts it was actually looking at.</p>
+            <div class="img-block" style="margin: 16px 0;">
+              <img src="img/hero-navbar-final.png" alt="Final navbar render" onclick="openLightbox(this.src)">
             </div>
-            <p class="step-body">That correction opened a real design decision: keep Inter, or revert to the same bare system stack the original used. A system stack renders differently by design across operating systems, San Francisco on macOS, Segoe UI on Windows, Roboto on Android, which works against a branded site's consistency. Inter was built specifically for screen UI, costs roughly 30KB with display=swap, and closely resembles the system fonts it was mistaken for in the first place, so it was kept.</p>
           </div>
         </div>
 
       </div>
-
-      <p><strong>Conclusion:</strong> visual polish came before accessibility. The contrast failures are the clearest evidence, two text elements shipped below WCAG AA while gradients and hover animation got the attention. The same gap shows in the mobile menu: proximity worked in the desktop dropdown cards, but broke down there.</p>
     </section>
 
     <section class="block" id="improvements">
@@ -296,7 +293,8 @@
       <ul style="padding-left: 20px; margin-bottom: 18px;">
         <li style="margin-bottom: 10px;"><strong>A more modern-looking visual design overall</strong>, the scroll-aware navbar, the gradient CTA button, and the animated hover states gave the component a visual polish the original reference screenshots never had.</li>
         <li style="margin-bottom: 10px;"><strong>Research into, and partial selection and implementation of, more stylish imagery</strong>, several service cards were swapped from generic or mismatched stock photos to images that fit the actual service and read as more German and more commercial, a real improvement even where the first attempt fell short.</li>
-        <li><strong>A more complete mobile-friendly layout</strong>, the full-screen mobile overlay with expandable accordion sections gave the mobile experience more structure than a simple stacked list would have.</li>
+        <li style="margin-bottom: 10px;"><strong>A more complete mobile-friendly layout</strong>, the full-screen mobile overlay with expandable accordion sections gave the mobile experience more structure than a simple stacked list would have.</li>
+        <li><strong>A considered typography call</strong>, keeping Inter over the bare system stack it had guessed at meant consistent rendering across operating systems instead of a look that shifts depending on the visitor's device.</li>
       </ul>
     </section>
 
@@ -304,11 +302,13 @@
       <div class="block-label">04 · Takeaway</div>
       <h2>Two failure modes, and the instinct that tells them apart</h2>
 
-      <p><strong>Missing input</strong> describes the logo and font problems: the tool guessed confidently from incomplete source material and never signaled that it was guessing. Both resolved faster by going straight to the actual source, the SVG file, the computed style panel, than any further round of prompting would have. <strong>Unverified output</strong> covers the contrast failures, the hierarchy problems, and the broken image: each one only came to light because something specific got checked instead of just trusted.</p>
+      <p><strong>Missing input</strong> describes the logo and font problems: the tool guessed confidently from incomplete source material and never signaled that it was guessing. Both resolved faster once I went straight to the actual source, the SVG file, the computed style panel, than any further round of prompting would have. <strong>Unverified output</strong> covers the contrast failures, the hierarchy problems, and the broken image, each one only came to light because something specific got checked instead of just trusted.</p>
+
+      <p>The clearest pattern in that second group: visual polish consistently won out over accessibility. The contrast failures are the sharpest example, two text elements shipped below WCAG AA while effort went into gradients and hover animation instead, and the same gap showed up again in the mobile menu, where proximity worked in the desktop dropdown cards but broke down there.</p>
 
       <div class="callout">What actually transfers here is the diagnostic instinct: recognizing which of these two failure modes, missing input or unverified output, is in front of you, and knowing which kind of check that calls for.</div>
 
-      <p>Everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning, not a line-by-line audit of the underlying implementation, that might be added later on. One open question also stays open rather than asserted: whether the same approach extends to performance, image sizing, render-blocking resources, load times, is untested here.</p>
+      <p>Everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning, not a line-by-line audit of the underlying implementation, that might be added later on. One question also stays open rather than asserted: whether the same approach extends to performance, image sizing, render-blocking resources, load times, is untested here.</p>
     </section>
 
     <div class="cta-block">
