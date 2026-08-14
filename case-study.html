@@ -60,6 +60,16 @@
     #lightbox img { max-width: 100%; max-height: 100%; border: 1px solid rgba(255,255,255,0.15); }
     #lightbox-close { position: fixed; top: 24px; right: 32px; color: #fff; font-size: 32px; line-height: 1; cursor: pointer; z-index: 301; background: none; border: none; }
     .hero-image img { width: 100%; display: block; }
+    .live-demo-card { display: flex; gap: 20px; align-items: center; margin-top: 32px; padding: 16px; border: 1.5px solid var(--border); border-radius: 16px; background: var(--white); text-decoration: none; color: inherit; transition: border-color 0.15s, box-shadow 0.15s; }
+    .live-demo-card:hover { border-color: var(--coral); box-shadow: 0 12px 28px rgba(224,96,64,0.12); }
+    .live-demo-shot { flex-shrink: 0; width: 160px; height: 100px; border-radius: 10px; overflow: hidden; background: var(--neutral); border: 1px solid var(--border-light); }
+    .live-demo-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .live-demo-body { flex: 1; min-width: 0; }
+    .live-demo-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--coral); margin-bottom: 6px; }
+    .live-demo-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .live-demo-text { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+    .live-demo-link { font-size: 13px; font-weight: 600; color: var(--coral); }
+    @media (max-width: 560px) { .live-demo-card { flex-direction: column; align-items: stretch; } .live-demo-shot { width: 100%; height: 140px; } }
     .meta-box { display: grid; grid-template-columns: 1fr 1fr; row-gap: 28px; column-gap: 24px; border: 1.5px dashed var(--border); border-radius: 16px; padding: 28px 40px; margin-top: 32px; }
     .meta-col { text-align: center; }
     .meta-label-box { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark); margin-bottom: 10px; }
@@ -158,6 +168,19 @@
     <div class="hero-image">
       <img src="img/screenshot-nav-redesign-before-after.png" alt="Before and after comparison" onclick="openLightbox(this.src)">
     </div>
+
+    <a href="https://sebastian-weber.github.io/figma-make-redesigned-navbar-component/" target="_blank" rel="noopener" class="live-demo-card">
+      <div class="live-demo-shot">
+        <img src="img/live-demo-navbar.png" alt="Screenshot of the deployed, reworked navbar component">
+      </div>
+      <div class="live-demo-body">
+        <div class="live-demo-label">Live Demo</div>
+        <div class="live-demo-title">The reworked navbar, deployed</div>
+        <p class="live-demo-text">Every fix from this review, contrast, hierarchy, logo, typeface, applied and shipped. Not a mockup.</p>
+        <span class="live-demo-link">View the deployed component &rarr;</span>
+      </div>
+    </a>
+
     <div class="meta-box">
       <div class="meta-col">
         <div class="meta-label-box">Project</div>
