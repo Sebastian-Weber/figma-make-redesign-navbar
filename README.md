@@ -1,11 +1,26 @@
+﻿# Human Review of an AI-Generated Redesign
 
-  # Nav Redesign with Figma Make
+Case study and source: an AI-assisted redesign of a navbar component using Figma Make, reviewed and refined by hand.
 
-  This is a code bundle for Webdesign überarbeiten. The original project is available at https://www.figma.com/design/Wz4ZO5pI4nMzSL7X6y9dq5/Webdesign-%C3%BCberarbeiten.
+## What This Is
 
-  ## Running the code
+Figma Make generated a first-pass redesign of an existing navbar. This project documents what I kept, what I changed, and why, treating the AI output as a draft rather than a finished design.
 
-  Run `npm i` to install the dependencies.
+## Tech Stack
 
-  Run `npm run dev` to start the development server.
-  
+| Layer | Tool |
+|---|---|
+| Design | Figma Make |
+| Frontend | React, TypeScript, Tailwind CSS |
+
+## Links
+
+Case study: [case-study.html](./case-study.html)
+Deployed component: [figma-make-redesigned-navbar-component](https://github.com/Sebastian-Weber/figma-make-redesigned-navbar-component)
+
+## Running the Code
+
+```
+npm i
+npm run dev
+```
