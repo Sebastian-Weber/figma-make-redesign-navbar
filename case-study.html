@@ -24,7 +24,6 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="sw_favicon32.svg">
   <title>Case Study: Human Review of an AI-Generated Redesign | Sebastian Weber</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
@@ -37,15 +36,51 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Montserrat', system-ui, sans-serif; background: var(--paper); color: var(--text); line-height: 1.7; }
-    #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--coral); width: 0%; transition: width 0.1s; z-index: 100; }
+    #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; transition: width 0.1s; z-index: 100; }
     nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(250,250,250,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 56px; }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a, .nav-current { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.15s; }
     .nav-links a:hover { color: var(--text); }
-    .nav-tag-coral { background: var(--coral-bg); color: var(--coral); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; pointer-events: none; }
-    .nav-cta { background: var(--coral); color: var(--white) !important; padding: 7px 16px; border-radius: 7px; font-size: 13px !important; font-weight: 600 !important; transition: background 0.15s; }
-    .nav-cta:hover { background: #E88F71 !important; }
+    .nav-current { color: var(--text); font-weight: 700; }
+    .nav-flex-item { display: inline-block; min-width: 76px; text-align: center; }
+
+    .lang-switch { display: flex; align-items: center; gap: 6px; }
+    .lang-switch button {
+      font-family: inherit; background: none; border: none;
+      font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; padding: 2px;
+      transition: color 0.15s;
+    }
+    .lang-switch button:hover { color: var(--text); }
+    .lang-switch button.active { color: var(--text); font-weight: 700; }
+    .lang-switch .sep { color: var(--border); }
+
+    .subnav {
+      position: sticky; top: 56px; z-index: 40;
+      background: rgba(250,250,250,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: flex-end; gap: 24px;
+      padding: 0 48px; height: 44px; align-items: center;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .subnav::-webkit-scrollbar { display: none; }
+    .subnav a {
+      font-size: 12px; font-weight: 600; color: var(--muted); text-decoration: none;
+      white-space: nowrap; padding: 4px 2px; border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s; flex-shrink: 0;
+    }
+    .subnav a:hover { color: var(--text); }
+    .subnav a.active { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (max-width: 860px) { .subnav { padding: 0 20px; } }
+    @media (max-width: 640px) { .subnav { display: none; } }
+
+    .nav-drawer__subnav-toggle-item { margin-top: 28px; }
+    .nav-drawer__subnav-label { display: flex; align-items: center; padding: 16px 4px; min-height: 44px; font-size: 18px; font-weight: 500; color: var(--muted); }
+    .nav-drawer__subnav-list { list-style: none; margin: 0; padding: 0; }
+    .nav-drawer__subnav-list li { border-bottom: 1px solid var(--border); }
+    .nav-drawer__subnav-list li:last-child { border-bottom: none; }
+    .nav-drawer__subnav-list a.subnav-drawer-item { display: flex; align-items: center; padding: 16px 4px 16px 22px; text-decoration: none; font-size: 18px; min-height: 44px; color: var(--muted); font-weight: 500; }
+    .nav-drawer__subnav-list a.subnav-drawer-item.active { color: var(--accent); font-weight: 700; }
+
     .hero { padding: 140px 48px 80px; max-width: 720px; margin: 0 auto; }
     .hero-label { font-size: 11px; font-weight: 600; color: var(--coral); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .hero-label::before { content: ''; display: block; width: 32px; height: 1.5px; background: var(--coral); }
@@ -60,16 +95,6 @@
     #lightbox img { max-width: 100%; max-height: 100%; border: 1px solid rgba(255,255,255,0.15); }
     #lightbox-close { position: fixed; top: 24px; right: 32px; color: #fff; font-size: 32px; line-height: 1; cursor: pointer; z-index: 301; background: none; border: none; }
     .hero-image img { width: 100%; display: block; }
-    .live-demo-card { display: flex; gap: 20px; align-items: center; margin-top: 32px; padding: 16px; border: 1.5px solid var(--border); border-radius: 16px; background: var(--white); text-decoration: none; color: inherit; transition: border-color 0.15s, box-shadow 0.15s; }
-    .live-demo-card:hover { border-color: var(--coral); box-shadow: 0 12px 28px rgba(224,96,64,0.12); }
-    .live-demo-shot { flex-shrink: 0; width: 160px; height: 100px; border-radius: 10px; overflow: hidden; background: var(--neutral); border: 1px solid var(--border-light); }
-    .live-demo-shot img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .live-demo-body { flex: 1; min-width: 0; }
-    .live-demo-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--coral); margin-bottom: 6px; }
-    .live-demo-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-    .live-demo-text { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
-    .live-demo-link { font-size: 13px; font-weight: 600; color: var(--coral); }
-    @media (max-width: 560px) { .live-demo-card { flex-direction: column; align-items: stretch; } .live-demo-shot { width: 100%; height: 140px; } }
     .meta-box { display: grid; grid-template-columns: 1fr 1fr; row-gap: 28px; column-gap: 24px; border: 1.5px dashed var(--border); border-radius: 16px; padding: 28px 40px; margin-top: 32px; }
     .meta-col { text-align: center; }
     .meta-label-box { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dark); margin-bottom: 10px; }
@@ -110,7 +135,6 @@
     footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: 0 auto; }
     footer p { font-size: 12px; color: var(--muted); margin: 0; }
 
-    /* Cookie Banner */
     #cookie-banner {
       position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%);
@@ -129,12 +153,11 @@
 
     @media (max-width: 860px) {
       nav { padding: 0 20px; } .hero { padding: 120px 20px 60px; } .content { padding: 0 20px 80px; }
-      .nav-links { display: none; } footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
       .img-grid { grid-template-columns: 1fr; }
       .meta-box { grid-template-columns: 1fr; }
     }
-  
-    /* ===== Mobile Navbar: Hamburger + Off-Canvas Drawer ===== */
+
     .nav-toggle {
       display: none;
       background: none;
@@ -200,7 +223,7 @@
       .nav-toggle { display: block; }
     }
 
-</style>
+  </style>
 </head>
 <body>
   <div id="progress"></div>
@@ -236,6 +259,8 @@
     </button>
   </nav>
 
+  <div class="subnav" id="subnav" aria-label="Sections on this page"></div>
+
   <div class="nav-overlay" id="navOverlay" data-open="false"></div>
 
   <aside class="nav-drawer" id="navDrawer" data-open="false" aria-hidden="true">
@@ -256,6 +281,13 @@
         </div>
       </li>
       <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank">LinkedIn</a></li>
+
+      <li class="nav-drawer__subnav-toggle-item" id="drawerSubnavToggleItem" hidden>
+        <span class="nav-drawer__subnav-label">On this page</span>
+      </li>
+      <li class="nav-drawer__subnav-list-item" id="drawerSubnavListItem" hidden>
+        <ul class="nav-drawer__subnav-list" id="drawerSubnavList"></ul>
+      </li>
     </ul>
   </aside>
 
@@ -265,11 +297,8 @@
     <h1>Human Review of an AI-Generated Redesign</h1>
     <p class="hero-sub">I had Figma Make rebuild a responsive navbar from six screenshots. The output looked plausible at first glance. The review is where it got interesting.</p>
     <div class="hero-image">
-      <img src="img/screenshot-nav-redesign-before-after.png" alt="Before and after comparison" onclick="openLightbox(this.src)">
+      <img src="img/before-after.png" alt="Before and after comparison" onclick="openLightbox(this.src)">
     </div>
-
-
-
     <div class="meta-box">
       <div class="meta-col">
         <div class="meta-label-box">Project</div>
@@ -334,11 +363,11 @@
             <p class="step-body">Checking contrast values directly rather than trusting the render, Version B held up: it preserved the accessibility choices already present in the reference design. Version C didn't. Two text elements failed WCAG AA once measured: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/version-b-high-contrast.png" alt="Version B phone number and Kontakt button in full white and green, high contrast against the dark background" onclick="openLightbox(this.src)">
+                <img src="img/version_b_high_contrast.png" alt="Version B phone number and Kontakt button in full white and green, high contrast against the dark background" onclick="openLightbox(this.src)">
                 <div class="img-caption">Version B · faithful to the reference, contrast held up</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/version-c-low-contrast.png" alt="Version C phone number in a muted, lower-contrast green against the dark background" onclick="openLightbox(this.src)">
+                <img src="img/version_c_low_contrast.png" alt="Version C phone number in a muted, lower-contrast green against the dark background" onclick="openLightbox(this.src)">
                 <div class="img-caption">Version C · contrast dropped below WCAG AA</div>
               </div>
             </div>
@@ -423,18 +452,6 @@
       <p>Everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning, not a line-by-line audit of the underlying implementation, that might be added later on. One question also stays open rather than asserted: whether the same approach extends to performance, image sizing, render-blocking resources, load times, is untested here.</p>
     </section>
 
-    <a href="https://sebastian-weber.github.io/figma-make-redesigned-navbar-component/" target="_blank" rel="noopener" class="live-demo-card">
-      <div class="live-demo-shot">
-        <img src="img/live-demo-navbar.png" alt="Screenshot of the deployed, reworked navbar component">
-      </div>
-      <div class="live-demo-body">
-        <div class="live-demo-label">Live Demo</div>
-        <div class="live-demo-title">The reworked navbar, deployed</div>
-        <p class="live-demo-text">Every fix from this review, contrast, hierarchy, logo, typeface, applied and shipped. Not a mockup.</p>
-        <span class="live-demo-link">View the deployed component &rarr;</span>
-      </div>
-    </a>
-
     <div class="cta-block">
       <h2>All Projects</h2>
       <a href="https://sebastian-weber.github.io/uxui-portfolio/" class="btn">To the project overview &rarr;</a>
@@ -469,7 +486,6 @@
       posthog.capture('cookie_consent', { accepted: accepted });
     }
 
-    // Revocation must be as easy as consent (Art. 7(3) GDPR)
     document.getElementById('cookie-settings-link').addEventListener('click', function (e) {
       e.preventDefault();
       document.getElementById('cookie-banner').style.display = 'flex';
@@ -484,6 +500,57 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.block').forEach(b => observer.observe(b));
+
+    /* Dynamische Subnav (sticky, rechtsbündig) + Drawer-Abschnitt aus .block[id] */
+    (function () {
+      var blocks = Array.prototype.slice.call(document.querySelectorAll('main.content .block[id]'));
+      if (!blocks.length) return;
+      var items = blocks.map(function (block) {
+        var label = block.getAttribute('data-nav-label');
+        if (!label) {
+          var labelEl = block.querySelector('.block-label');
+          label = labelEl ? labelEl.textContent : block.id;
+          label = label.replace(/^[0-9]+[a-z]?\s*[·\u00b7\-–]\s*/i, '').trim();
+        }
+        return { id: block.id, label: label };
+      });
+
+      var subnav = document.getElementById('subnav');
+      if (subnav) {
+        items.forEach(function (item) {
+          var a = document.createElement('a');
+          a.href = '#' + item.id; a.textContent = item.label; a.dataset.target = item.id;
+          subnav.appendChild(a);
+        });
+      }
+
+      var toggleItem = document.getElementById('drawerSubnavToggleItem');
+      var listItem = document.getElementById('drawerSubnavListItem');
+      var listEl = document.getElementById('drawerSubnavList');
+      if (toggleItem && listItem && listEl) {
+        toggleItem.hidden = false;
+        listItem.hidden = false;
+        items.forEach(function (item) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = '#' + item.id; a.textContent = item.label; a.className = 'subnav-drawer-item'; a.dataset.target = item.id;
+          li.appendChild(a);
+          listEl.appendChild(li);
+        });
+      }
+
+      var allNavLinks = document.querySelectorAll('.subnav a, .subnav-drawer-item');
+      var activeObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var id = entry.target.id;
+          allNavLinks.forEach(function (link) { link.classList.toggle('active', link.dataset.target === id); });
+          var activeDesktop = subnav && subnav.querySelector('a.active');
+          if (activeDesktop) { activeDesktop.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      blocks.forEach(function (block) { activeObserver.observe(block); });
+    })();
   </script>
   <script>
   (function () {
@@ -532,7 +599,6 @@
     closeBtn.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
 
-    /* Sprach-Buttons im Drawer an die bestehende switchLang() koppeln */
     var drawerLangButtons = document.querySelectorAll('.nav-drawer__lang [data-lang]');
     drawerLangButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
