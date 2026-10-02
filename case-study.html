@@ -111,6 +111,7 @@
     .callout { background: #F5E5E0; color: var(--dark); padding: 24px 28px; border-radius: 12px; margin: 32px 0; font-style: italic; font-size: 18px; line-height: 1.5; font-weight: 300; border-left: 4px solid #C87255; }
     .img-block { margin: 28px 0; }
     .img-block img { width: 100%; border: 1px solid var(--border); display: block; }
+    .img-block--portrait { max-width: 360px; margin-left: auto; margin-right: auto; }
     .img-caption { font-size: 11px; color: var(--muted); margin-top: 8px; font-weight: 500; letter-spacing: 0.04em; }
     .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
     .img-grid-item img { width: 100%; border: 1px solid var(--border); display: block; }
@@ -324,7 +325,17 @@
     <section class="block" id="context" style="border-top: none; padding-top: 0;">
       <div class="block-label">01 · Context</div>
       <h2>Setup and first review</h2>
-      <p>I imported six screenshots of an existing responsive navigation bar into Figma Make, covering desktop, tablet, two breakpoints for mobile devices, and the mobile drawer overlay, then asked the programme to recreate the component in code.</p>
+      <p>I fed Figma Make a set of screenshots of an existing responsive navigation bar, covering the desktop and mobile layouts as well as individual interaction states such as expanded dropdowns and the mobile drawer overlay, then asked the programme to recreate the component in code. The two complete views below show the starting point; the individual state screenshots are not reproduced here.</p>
+
+      <div class="img-block">
+        <img src="img/original-nav.png" alt="Original reference navbar on desktop before the Figma Make rework" onclick="openLightbox(this.src)">
+        <div class="img-caption">Starting point · the original desktop navbar used as reference</div>
+      </div>
+
+      <div class="img-block img-block--portrait">
+        <img src="img/mobile-menu-original-ref.png" alt="Original reference mobile menu with chevrons grouped directly against their labels" onclick="openLightbox(this.src)">
+        <div class="img-caption">Starting point · the original mobile menu</div>
+      </div>
 
       <div class="img-block">
         <img src="img/first-build-initial-output.png" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
