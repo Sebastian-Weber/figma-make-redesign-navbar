@@ -111,7 +111,11 @@
     .callout { background: #F5E5E0; color: var(--dark); padding: 24px 28px; border-radius: 12px; margin: 32px 0; font-style: italic; font-size: 18px; line-height: 1.5; font-weight: 300; border-left: 4px solid #C87255; }
     .img-block { margin: 28px 0; }
     .img-block img { width: 100%; border: 1px solid var(--border); display: block; }
-    .img-block--portrait { max-width: 360px; margin-left: auto; margin-right: auto; }
+    .img-block--portrait { max-width: 280px; margin-left: auto; margin-right: auto; }
+    .img-set { margin: 48px 0; }
+    .img-set .img-block:first-child { margin-top: 0; }
+    .img-set .img-block:last-child { margin-bottom: 0; }
+    .img-divider { margin: 0; }
     .img-caption { font-size: 11px; color: var(--muted); margin-top: 8px; font-weight: 500; letter-spacing: 0.04em; }
     .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
     .img-grid-item img { width: 100%; border: 1px solid var(--border); display: block; }
@@ -327,22 +331,26 @@
       <h2 data-i18n="h2-01">Setup and first review</h2>
       <p data-i18n="ctx-p1">I fed Figma Make a set of screenshots of an existing responsive navigation bar, covering the desktop and mobile layouts as well as individual interaction states such as expanded dropdowns and the mobile drawer overlay, then asked the programme to recreate the component in code. The two complete views below show the starting point; the individual state screenshots are not reproduced here.</p>
 
-      <div class="img-block">
-        <img src="img/original-nav.png" data-i18n-alt="alt-2" alt="Original reference navbar on desktop before the Figma Make rework" onclick="openLightbox(this.src)">
-        <div class="img-caption" data-i18n="cap-orig-nav">Starting point · the original desktop navbar used as reference</div>
+      <div class="img-set">
+        <div class="img-block">
+          <img src="img/original-nav.png" data-i18n-alt="alt-2" alt="Original reference navbar on desktop before the Figma Make rework" onclick="openLightbox(this.src)">
+          <div class="img-caption" data-i18n="cap-orig-nav">Starting point · the original desktop navbar used as reference</div>
+        </div>
+
+        <div class="img-block img-block--portrait">
+          <img src="img/mobile-menu-original-ref.png" data-i18n-alt="alt-3" alt="Original reference mobile menu with chevrons grouped directly against their labels" onclick="openLightbox(this.src)">
+          <div class="img-caption" data-i18n="cap-orig-mobile">Starting point · the original mobile menu</div>
+        </div>
       </div>
 
-      <div class="img-block img-block--portrait">
-        <img src="img/mobile-menu-original-ref.png" data-i18n-alt="alt-3" alt="Original reference mobile menu with chevrons grouped directly against their labels" onclick="openLightbox(this.src)">
-        <div class="img-caption" data-i18n="cap-orig-mobile">Starting point · the original mobile menu</div>
-      </div>
+      <p class="img-divider" data-i18n="ctx-p2">After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) It admitted its own shortcomings in the same breath: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original. Set against those admissions, the claim isn't true. A poor call of judgment. This is what that first output looked like:</p>
 
-      <div class="img-block">
-        <img src="img/first-build-initial-output.png" data-i18n-alt="alt-4" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
-        <div class="img-caption" data-i18n="cap-first">The first result, before any review: logo already malformed, image already broken</div>
+      <div class="img-set">
+        <div class="img-block">
+          <img src="img/first-build-initial-output.png" data-i18n-alt="alt-4" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
+          <div class="img-caption" data-i18n="cap-first">The first result, before any review: logo already malformed, image already broken</div>
+        </div>
       </div>
-
-      <p data-i18n="ctx-p2">After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) It admitted its own shortcomings in the same breath: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original. Set against those admissions, the claim isn't true. A poor call of judgment.</p>
       <p data-i18n="ctx-p3">From there I had it produce two separate variants: Version B, staying close to the original reference, and Version C, a more visually ambitious rework. The gap had been underestimated: the logo was far off from the original reference, more than just an approximation, and the alignment of the navigation and the typeface also diverged more than "minor adjustments" implied, an initial indication that a tool's assessment of its own work requires independent verification rather than passive acceptance.</p>
     </section>
 
@@ -647,7 +655,7 @@
       "cap-orig-nav": "Ausgangslage · die originale Desktop-Navbar als Referenz",
       "cap-orig-mobile": "Ausgangslage · das originale Mobile-Menü",
       "cap-first": "Das erste Ergebnis vor jeder Prüfung: Logo bereits verformt, Bild bereits defekt",
-      "ctx-p2": "Nach dem ersten Durchsehen habe ich Figma Make gefragt: Hast du das Design exakt kopiert, verbessert oder eher neu gestaltet? Die Antwort: <em>\"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,\"</em> (!), also eine originalgetreue Kopie mit kleinen Anpassungen. Im selben Atemzug nannte das Tool eigene Schwächen: Das Logo sei nur angenähert, Breite des Dropdown-Panels und Proportionen der Karten könnten leicht abweichen. Diese Eingeständnisse widersprechen der eigenen Einschätzung. Das Tool hat sich selbst falsch bewertet.",
+      "ctx-p2": "Nach dem ersten Durchsehen habe ich Figma Make gefragt: Hast du das Design exakt kopiert, verbessert oder eher neu gestaltet? Die Antwort: <em>\"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,\"</em> (!), also eine originalgetreue Kopie mit kleinen Anpassungen. Im selben Atemzug nannte das Tool eigene Schwächen: Das Logo sei nur angenähert, Breite des Dropdown-Panels und Proportionen der Karten könnten leicht abweichen. Diese Eingeständnisse widersprechen der eigenen Einschätzung. Das Tool hat sich selbst falsch bewertet. So sah dieser erste Output aus:",
       "ctx-p3": "Danach habe ich zwei Varianten erstellen lassen: Version B bleibt nah an der Referenz, Version C ist eine mutigere Überarbeitung. Dabei zeigte sich, dass das Tool die Abweichungen unterschätzt hatte. Das Logo lag weit vom Original entfernt, weit mehr als eine Annäherung. Auch die Ausrichtung der Navigation und die Schrift wichen stärker ab, als „kleine Anpassungen“ vermuten ließ. Für mich ein erster Hinweis: Wie ein Tool seine eigene Arbeit bewertet, muss ich unabhängig prüfen. Ich kann es nicht einfach übernehmen.",
       "lbl-02": "02 · Befunde",
       "h2-02": "Wo die KI danebenlag",
