@@ -134,7 +134,11 @@
     table.findings td { padding: 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; color: var(--text); }
     table.findings tr:last-child td { border-bottom: none; }
     .cta-block { background: #F2E6E3; border-radius: 16px; padding: 48px; text-align: center; margin-top: 80px; }
-    .cta-block h2 { color: #1A1A1A; margin-bottom: 12px; }
+    .cta-block h2 { color: #1A1A1A; font-size: 26px; margin-bottom: 12px; }
+    .cta-sub { font-size: 16px; color: var(--muted); margin-bottom: 28px; }
+    .cta-back { font-size: 13px; margin: 20px 0 0; }
+    .cta-back a { color: var(--muted); }
+    .cta-back a:hover { color: var(--text); }
     .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--coral); color: var(--white); padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.15s; }
     .btn:hover { background: #E88F71; color: var(--white); }
     footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: 0 auto; }
@@ -161,6 +165,8 @@
       footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
       .img-grid { grid-template-columns: 1fr; }
       .meta-box { grid-template-columns: 1fr; }
+      .cta-block { padding: 36px 24px; }
+      .cta-block h2 { font-size: 22px; }
     }
 
     .nav-toggle {
@@ -472,8 +478,10 @@
     </section>
 
     <div class="cta-block">
-      <h2 data-i18n="cta-h2">All Projects</h2>
-      <a href="https://sebastian-weber.github.io/uxui-portfolio/" class="btn" data-i18n="cta-btn">To the project overview &rarr;</a>
+      <h2 data-i18n="cta-h2">See the final navbar in action</h2>
+      <p class="cta-sub" data-i18n="cta-sub">Responsive component in React, TypeScript and Tailwind CSS.</p>
+      <a href="https://sebastian-weber.github.io/figma-make-redesigned-navbar-component/index.html" class="btn" target="_blank" rel="noopener" data-i18n="cta-btn">Try the component &rarr;</a>
+      <p class="cta-back"><a href="https://sebastian-weber.github.io/uxui-portfolio/" data-i18n="cta-back">All projects &rarr;</a></p>
     </div>
 
   </main>
@@ -690,8 +698,10 @@
       "tk-p2": "Das deutlichste Muster in der zweiten Gruppe: Optik ging durchgehend vor Barrierefreiheit. Am klarsten zeigen das die Kontrastfehler. Zwei Textelemente lagen unter WCAG AA, während das Tool Aufwand in Farbverläufe und Hover-Animationen gesteckt hat. Dieselbe Lücke zeigt sich im Mobile-Menü: In den Dropdown-Karten auf dem Desktop funktioniert die Nähe von Elementen, im Mobile-Menü nicht mehr.",
       "tk-callout": "Was sich übertragen lässt, ist der diagnostische Blick: Ich erkenne, welches der beiden Fehlermuster vorliegt, fehlender Input oder ungeprüfter Output, und weiß, welche Prüfung es braucht.",
       "tk-p3": "Alle Befunde beruhen auf dem gerenderten Ergebnis, den berechneten Styles im Browser und den Begründungen des Tools selbst. Den Code dahinter habe ich nicht Zeile für Zeile geprüft. Das kann ich später nachholen. Eine Frage lasse ich bewusst offen: Ob der Ansatz auch für Performance funktioniert, also für Bildgrößen, render-blockierende Ressourcen und Ladezeiten, habe ich hier nicht getestet.",
-      "cta-h2": "Alle Projekte",
-      "cta-btn": "Zur Projektübersicht &rarr;",
+      "cta-h2": "Die fertige Navbar live ansehen",
+      "cta-sub": "Responsive Komponente in React, TypeScript und Tailwind CSS.",
+      "cta-btn": "Komponente ausprobieren &rarr;",
+      "cta-back": "Alle Projekte &rarr;",
       "foot-sig": "Sebastian Weber · UI Designer · Design-to-Code · Köln 2026",
       "foot-legal": "Impressum &amp; Datenschutz",
       "foot-cookie": "Cookie-Einstellungen",
