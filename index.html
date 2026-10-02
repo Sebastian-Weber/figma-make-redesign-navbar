@@ -1,22 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/sw_favicon32.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="doc-title">Navbar Redesign with Figma Make | Live Demo</title>
+  <meta name="description" content="Live demo of a navbar redesign generated with Figma Make and built in React, plus a review of the AI-generated result." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+  /* Wrapper styles are class-scoped so Tailwind preflight from the React app cannot override them. */
+  :root {
+    --bg: #f7f6f3;
+    --paper: #FAFAFA;
+    --surface: #ffffff;
+    --border: #e4e2dc;
+    --nav-border: #E0DEDA;
+    --text: #1a1916;
+    --nav-text: #1A1A1A;
+    --muted: #8a8880;
+    --nav-muted: #7A7A7A;
+    --accent: #4A9B8E;
+    --teal: #4A9B8E;
+    --teal-bg: #E6F4F1;
+    --teal-dark: #3D8577;
+  }
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>figma-make-redesign-navbar</title>
-      <meta name="description" content="Revamp your website design effortlessly with this intuitive tool, perfect for businesses and individuals seeking a modern, professional online presence." />
-      <meta name="robots" content="noindex, nofollow" />
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-      
-    </head>
+  .page-body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 72px 1.5rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    <body>
-      
+  .wrap { max-width: 820px; margin: 0 auto; }
+
+  .page-header {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .page-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+    margin: 0 0 1rem;
+  }
+  .page-title em { color: var(--accent); font-style: italic; }
+
+  .subtitle { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 560px; margin: 0; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+
+  .card-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.4rem; font-weight: 400;
+    color: var(--text); letter-spacing: -0.01em; margin: 0;
+  }
+  .card-title em { color: var(--accent); font-style: italic; }
+  .card-subtitle { font-size: 12px; color: var(--muted); }
+
+  .howto-list {
+    margin: 0; padding-left: 1.3rem;
+    display: flex; flex-direction: column; gap: 0.6rem;
+    font-size: 13px; line-height: 1.6; color: var(--text);
+    list-style: decimal;
+  }
+  .howto-list li::marker { color: var(--accent); font-weight: 600; }
+
+  /* Demo frame: transform creates a containing block, so a fixed navbar inside the app stays inside the frame. */
+  .demo-frame {
+    position: relative; transform: translateZ(0); overflow: hidden;
+    border: 1px solid var(--border); border-radius: 8px; background: #ffffff;
+  }
+  #root { min-height: 560px; }
+
+  .end-cta { background: var(--teal-bg); border-radius: 16px; padding: 2.8rem 2rem; text-align: center; margin-top: 2.5rem; }
+  .end-cta-heading {
+    font-family: 'Source Serif 4', serif; font-size: 1.7rem; font-weight: 400;
+    color: var(--text); margin: 0 0 0.7rem; letter-spacing: -0.01em;
+  }
+  .end-cta-heading em { color: var(--teal); font-style: italic; }
+  .end-cta-sub { font-size: 13px; color: var(--muted); max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6; }
+  .end-cta-btn {
+    display: inline-block; background: var(--teal); color: #ffffff;
+    font-weight: 600; font-size: 13px; padding: 0.65rem 1.4rem;
+    border-radius: 8px; text-decoration: none; transition: background 0.15s;
+  }
+  .end-cta-btn:hover { background: var(--teal-dark); }
+
+  .page-footer {
+    margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem;
+    text-align: center; font-size: 11px; letter-spacing: 0.04em; color: var(--muted);
+  }
+  .page-footer a { color: var(--muted); text-decoration: none; }
+
+  /* ---------- Portfolio navbar (same structure as the case studies) ---------- */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(250,250,250,0.94); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--nav-border);
+    z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 56px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .site-nav .logo { display: flex; align-items: center; line-height: 0; margin-right: 8px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; margin: 0; padding: 0; }
+  .nav-links a, .nav-links .nav-current {
+    font-size: 13px; color: var(--nav-muted); text-decoration: none; font-weight: 500; transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--nav-text); }
+  .nav-links .nav-current { color: var(--nav-text); font-weight: 700; }
+  .nav-flex-item { display: inline-block; min-width: 76px; text-align: center; }
+
+  .lang-switch { display: flex; align-items: center; gap: 6px; }
+  .lang-switch button {
+    font-family: inherit; background: none; border: none;
+    font-size: 13px; font-weight: 500; color: var(--nav-muted); cursor: pointer; padding: 2px;
+    transition: color 0.15s;
+  }
+  .lang-switch button:hover { color: var(--nav-text); }
+  .lang-switch button.active { color: var(--nav-text); font-weight: 700; }
+  .lang-switch .sep { color: var(--nav-border); }
+
+  .nav-toggle { display: none; background: none; border: none; padding: 8px; cursor: pointer; color: var(--nav-text); }
+  .nav-toggle svg { display: block; }
+
+  .nav-drawer {
+    position: fixed; top: 0; right: 0; height: 100%;
+    width: min(78vw, 320px);
+    background: var(--paper); z-index: 200; padding: 20px;
+    transform: translateX(100%); transition: transform 0.28s ease;
+    display: flex; flex-direction: column;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.08);
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .nav-drawer[data-open="true"] { transform: translateX(0); }
+  .nav-drawer__header { display: flex; justify-content: flex-end; margin-bottom: 24px; }
+  .nav-drawer__close { background: none; border: none; padding: 8px; cursor: pointer; color: var(--nav-text); }
+  .nav-drawer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .nav-drawer__links li { border-bottom: 1px solid var(--nav-border); }
+  .nav-drawer__links a, .nav-drawer__links .nav-current {
+    display: flex; align-items: center; padding: 16px 4px;
+    text-decoration: none; font-size: 18px; min-height: 44px;
+  }
+  .nav-drawer__links a { color: var(--nav-muted); font-weight: 500; }
+  .nav-drawer__links .nav-current { color: var(--nav-text); font-weight: 700; }
+  .nav-drawer__lang { display: flex; gap: 6px; padding: 16px 4px; }
+  .nav-drawer__lang button {
+    font-family: inherit; background: none; border: none;
+    font-size: 16px; font-weight: 500; color: var(--nav-muted); cursor: pointer; padding: 4px;
+  }
+  .nav-drawer__lang button.active { color: var(--nav-text); font-weight: 700; }
+  .nav-drawer__lang .sep { color: var(--nav-border); }
+
+  .nav-overlay {
+    position: fixed; inset: 0; background: rgba(15,17,23,0.55);
+    z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.28s ease;
+  }
+  .nav-overlay[data-open="true"] { opacity: 1; pointer-events: auto; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) { .nav-drawer, .nav-overlay { transition: none; } }
+  @media (max-width: 860px) { .site-nav { padding: 0 20px; } }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+  }
+  @media (max-width: 560px) {
+    .page-body { padding: 72px 1rem 4rem; }
+    .card { padding: 1.1rem; }
+  }
+  </style>
+</head>
+
+<body class="page-body">
+
+<nav class="site-nav">
+  <a href="https://sebastian-weber.github.io/uxui-portfolio/index.html" class="logo" aria-label="Sebastian Weber - Home"><svg width="40" height="40" style="display:block;margin-top:-2px;" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M0 19.0413V20.7092L15.9986 26.8336V25.3991L11.7131 23.7928V23.7848L10.3368 23.2366L1.51283 19.9819L10.3384 16.7504V16.7576L11.7146 16.2587L16.0001 14.6524V13.1113L0 19.0413Z" fill="#0F1117"/><path d="M16.0001 24.0696V22.4023L0 16.2773V17.7113L4.2859 19.317V19.3279L5.66227 19.8759L14.4871 23.1294L5.66227 26.3619V26.3546L4.2859 26.8534L0 28.4591V29.9996L16.0001 24.0696Z" fill="#0F1117"/><path d="M20.3237 26.8333H22.1382L28.8006 11H27.2401L25.4927 15.242H25.4809L24.8844 16.6032L21.3438 25.3361L17.826 16.6032H17.8339L17.2911 15.242L15.5436 11H13.8672L20.3237 26.8333Z" fill="#0F1117"/><path d="M23.5229 26.8333H25.3374L31.9998 11H30.4394L28.6919 15.2418H28.6801L28.0837 16.603L24.543 25.3354L21.0252 16.603H21.0331L20.4903 15.2418L18.7429 11H17.0664L23.5229 26.8333Z" fill="#0F1117"/></svg></a>
+  <ul class="nav-links">
+    <li><span class="nav-current" data-i18n="nav-portfolio" aria-current="page">Portfolio</span></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/about.html" class="nav-flex-item" data-i18n="nav-about">About</a></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" class="nav-flex-item" data-i18n="nav-imprint">Imprint</a></li>
+    <li>
+      <span class="lang-switch">
+        <button type="button" data-lang="de">DE</button>
+        <span class="sep">|</span>
+        <button type="button" data-lang="en" class="active">EN</button>
+      </span>
+    </li>
+    <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu" data-i18n-aria="menu-open">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" data-open="false"></div>
+
+<aside class="nav-drawer" id="navDrawer" data-open="false" aria-hidden="true">
+  <div class="nav-drawer__header">
+    <button class="nav-drawer__close" id="navDrawerClose" aria-label="Close menu" data-i18n-aria="menu-close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul class="nav-drawer__links">
+    <li><span class="nav-current" data-i18n="nav-portfolio" aria-current="page">Portfolio</span></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/about.html" data-i18n="nav-about">About</a></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" data-i18n="nav-imprint">Imprint</a></li>
+    <li>
+      <div class="nav-drawer__lang">
+        <button type="button" data-lang="de">DE</button>
+        <span class="sep">|</span>
+        <button type="button" data-lang="en" class="active">EN</button>
+      </div>
+    </li>
+    <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul>
+</aside>
+
+<div class="wrap">
+
+  <header class="page-header">
+    <h1 class="page-title" data-i18n="h1">Navbar redesign with <em>Figma Make</em></h1>
+    <p class="subtitle" data-i18n="subtitle">A navbar redesign generated with Figma Make and running as a React build. Try the live demo below, then read the case study that reviews the AI-generated result.</p>
+  </header>
+
+  <section class="card">
+    <div class="card-header">
+      <h2 class="card-title" data-i18n="howto-title">How to <em>explore</em></h2>
+    </div>
+    <ol class="howto-list">
+      <li data-i18n="howto-1"><strong>Use the navbar</strong>: click through the links and menus in the demo below.</li>
+      <li data-i18n="howto-2"><strong>Resize the window</strong>: check how the navbar behaves on smaller screens.</li>
+      <li data-i18n="howto-3"><strong>Read the review</strong>: the case study covers what Figma Make produced and how it was assessed.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <div class="card-header">
+      <h2 class="card-title" data-i18n="demo-title">Live <em>demo</em></h2>
+      <span class="card-subtitle" data-i18n="demo-sub">Rendered from the React build</span>
+    </div>
+    <div class="demo-frame">
       <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-      
-    </body>
-  </html>
-  
+    </div>
+  </section>
+
+  <section class="end-cta">
+    <h2 class="end-cta-heading" data-i18n="cta-h">See how this redesign was <em>reviewed.</em></h2>
+    <p class="end-cta-sub" data-i18n="cta-sub">From the Figma Make prompt to the React build: the case study walks through the AI-generated navbar and the design review behind it.</p>
+    <a href="https://sebastian-weber.github.io/figma-make-redesign-navbar/case-study.html" class="end-cta-btn" data-i18n="cta-btn">Read case study</a>
+  </section>
+
+  <footer class="page-footer"><span data-i18n="footer-title">Navbar Redesign with Figma Make</span> &nbsp;|&nbsp; <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" data-i18n="footer-legal">Legal Notice &amp; Privacy Policy</a></footer>
+</div>
+
+<script>
+  /* i18n: English lives in the markup, German comes from DE. Language persists under "sw-lang" across the portfolio. */
+  (function () {
+    var DE = {
+      'doc-title': 'Navbar-Redesign mit Figma Make | Live-Demo',
+      'nav-portfolio': 'Portfolio',
+      'nav-about': 'Über mich',
+      'nav-imprint': 'Impressum',
+      'menu-open': 'Menü öffnen',
+      'menu-close': 'Menü schließen',
+      'h1': 'Navbar-Redesign mit <em>Figma Make</em>',
+      'subtitle': 'Figma Make hat dieses Navbar-Redesign generiert, hier läuft es als React-Build. Probier die Demo unten aus und lies danach die Case Study, in der ich das Ergebnis der KI prüfe.',
+      'howto-title': 'So <em>testest</em> du die Demo',
+      'howto-1': '<strong>Navbar nutzen</strong>: Klick dich in der Demo durch Links und Menüs.',
+      'howto-2': '<strong>Fenster verkleinern</strong>: Schau, wie sich die Navbar auf kleineren Bildschirmen verhält.',
+      'howto-3': '<strong>Review lesen</strong>: In der Case Study zeige ich, was Figma Make erzeugt hat und wie ich es bewertet habe.',
+      'demo-title': 'Live-<em>Demo</em>',
+      'demo-sub': 'Direkt aus dem React-Build',
+      'cta-h': 'So habe ich das Redesign <em>geprüft.</em>',
+      'cta-sub': 'Vom Prompt in Figma Make bis zum React-Build: Die Case Study zeigt die KI-generierte Navbar und mein Design-Review dazu.',
+      'cta-btn': 'Case Study lesen',
+      'footer-title': 'Navbar-Redesign mit Figma Make',
+      'footer-legal': 'Impressum & Datenschutz'
+    };
+    var EN = {}, EN_ARIA = {};
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n'); if (!(k in EN)) EN[k] = el.innerHTML;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      EN_ARIA[el.getAttribute('data-i18n-aria')] = el.getAttribute('aria-label');
+    });
+
+    window.switchLang = function (lang) {
+      if (lang !== 'de' && lang !== 'en') lang = 'en';
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var k = el.getAttribute('data-i18n');
+        var v = lang === 'de' && DE[k] != null ? DE[k] : EN[k];
+        if (el.tagName === 'TITLE') { document.title = v; } else { el.innerHTML = v; }
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+        var k = el.getAttribute('data-i18n-aria');
+        el.setAttribute('aria-label', lang === 'de' && DE[k] ? DE[k] : EN_ARIA[k]);
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-lang]').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      try { localStorage.setItem('sw-lang', lang); } catch (e) {}
+    };
+
+    document.querySelectorAll('[data-lang]').forEach(function (btn) {
+      btn.addEventListener('click', function () { window.switchLang(btn.getAttribute('data-lang')); });
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem('sw-lang'); } catch (e) {}
+    if (saved === 'de') window.switchLang('de');
+  })();
+
+  /* Mobile drawer */
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var closeBtn = document.getElementById('navDrawerClose');
+    var drawer = document.getElementById('navDrawer');
+    var overlay = document.getElementById('navOverlay');
+    var lastFocused = null;
+
+    function openDrawer() {
+      lastFocused = document.activeElement;
+      drawer.setAttribute('data-open', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      overlay.setAttribute('data-open', 'true');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+    function closeDrawer() {
+      drawer.setAttribute('data-open', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      overlay.setAttribute('data-open', 'false');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused) lastFocused.focus();
+    }
+    function onKeydown(e) {
+      if (e.key === 'Escape') closeDrawer();
+      if (e.key === 'Tab') {
+        var f = drawer.querySelectorAll('a, button');
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    toggle.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+  })();
+</script>
+
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
