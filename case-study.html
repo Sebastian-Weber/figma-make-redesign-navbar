@@ -230,9 +230,9 @@
   <div id="progress"></div>
 
   <div id="cookie-banner" style="display:none;">
-    <p>This site uses PostHog for privacy-focused analytics, hosted on EU servers. <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank">Privacy Policy</a></p>
-    <button class="cookie-btn cookie-decline" onclick="decideConsent(false)">Decline</button>
-    <button class="cookie-btn cookie-accept" onclick="decideConsent(true)">Accept</button>
+    <p data-i18n="cookie-text">This site uses PostHog for privacy-focused analytics, hosted on EU servers. <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank">Privacy Policy</a></p>
+    <button class="cookie-btn cookie-decline" onclick="decideConsent(false)" data-i18n="cookie-decline">Decline</button>
+    <button class="cookie-btn cookie-accept" onclick="decideConsent(true)" data-i18n="cookie-accept">Accept</button>
   </div>
 
   <div id="lightbox" onclick="closeLightbox()">
@@ -255,18 +255,18 @@
       </li>
       <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank">LinkedIn</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Menü öffnen">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu" data-i18n-aria="menu-open">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </nav>
 
-  <div class="subnav" id="subnav" aria-label="Sections on this page"></div>
+  <div class="subnav" id="subnav" aria-label="Sections on this page" data-i18n-aria="subnav-aria"></div>
 
   <div class="nav-overlay" id="navOverlay" data-open="false"></div>
 
   <aside class="nav-drawer" id="navDrawer" data-open="false" aria-hidden="true">
     <div class="nav-drawer__header">
-      <button class="nav-drawer__close" id="navDrawerClose" aria-label="Menü schließen">
+      <button class="nav-drawer__close" id="navDrawerClose" aria-label="Close menu" data-i18n-aria="menu-close">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
@@ -284,7 +284,7 @@
       <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank">LinkedIn</a></li>
 
       <li class="nav-drawer__subnav-toggle-item" id="drawerSubnavToggleItem" hidden>
-        <span class="nav-drawer__subnav-label">On this page</span>
+        <span class="nav-drawer__subnav-label" data-i18n="drawer-onpage">On this page</span>
       </li>
       <li class="nav-drawer__subnav-list-item" id="drawerSubnavListItem" hidden>
         <ul class="nav-drawer__subnav-list" id="drawerSubnavList"></ul>
@@ -295,26 +295,26 @@
 
   <section class="hero">
     <div class="hero-label">Case Study</div>
-    <h1>Human Review of an AI-Generated Redesign</h1>
-    <p class="hero-sub">I had Figma Make rebuild a responsive navbar from six screenshots. The output looked plausible at first glance. The review is where it got interesting.</p>
+    <h1 data-i18n="h1">Human Review of an AI-Generated Redesign</h1>
+    <p class="hero-sub" data-i18n="hero-sub">I had Figma Make rebuild a responsive navbar from six screenshots. The output looked plausible at first glance. The review is where it got interesting.</p>
     <div class="hero-image">
-      <img src="img/before-after.png" alt="Before and after comparison" onclick="openLightbox(this.src)">
+      <img src="img/before-after.png" data-i18n-alt="alt-1" alt="Before and after comparison" onclick="openLightbox(this.src)">
     </div>
     <div class="meta-box">
       <div class="meta-col">
-        <div class="meta-label-box">Project</div>
-        <div class="meta-value-box">Peters Elektro Template<br>Design-to-Code Experiment</div>
+        <div class="meta-label-box" data-i18n="meta-project">Project</div>
+        <div class="meta-value-box" data-i18n="meta-project-v">Peters Elektro Template<br>Design-to-Code Experiment</div>
       </div>
       <div class="meta-col">
-        <div class="meta-label-box">My Role</div>
-        <div class="meta-value-box">Design Review<br>Technical Audit, Accessibility QA</div>
+        <div class="meta-label-box" data-i18n="meta-role">My Role</div>
+        <div class="meta-value-box" data-i18n="meta-role-v">Design Review<br>Technical Audit, Accessibility QA</div>
       </div>
       <div class="meta-col">
         <div class="meta-label-box">Tools</div>
         <div class="meta-value-box">Figma Make<br>React, TypeScript, Tailwind CSS</div>
       </div>
       <div class="meta-col">
-        <div class="meta-label-box">Timeline</div>
+        <div class="meta-label-box" data-i18n="meta-timeline">Timeline</div>
         <div class="meta-value-box">2026</div>
       </div>
     </div>
@@ -323,45 +323,45 @@
   <main class="content">
 
     <section class="block" id="context" style="border-top: none; padding-top: 0;">
-      <div class="block-label">01 · Context</div>
-      <h2>Setup and first review</h2>
-      <p>I fed Figma Make a set of screenshots of an existing responsive navigation bar, covering the desktop and mobile layouts as well as individual interaction states such as expanded dropdowns and the mobile drawer overlay, then asked the programme to recreate the component in code. The two complete views below show the starting point; the individual state screenshots are not reproduced here.</p>
+      <div class="block-label" data-i18n="lbl-01">01 · Context</div>
+      <h2 data-i18n="h2-01">Setup and first review</h2>
+      <p data-i18n="ctx-p1">I fed Figma Make a set of screenshots of an existing responsive navigation bar, covering the desktop and mobile layouts as well as individual interaction states such as expanded dropdowns and the mobile drawer overlay, then asked the programme to recreate the component in code. The two complete views below show the starting point; the individual state screenshots are not reproduced here.</p>
 
       <div class="img-block">
-        <img src="img/original-nav.png" alt="Original reference navbar on desktop before the Figma Make rework" onclick="openLightbox(this.src)">
-        <div class="img-caption">Starting point · the original desktop navbar used as reference</div>
+        <img src="img/original-nav.png" data-i18n-alt="alt-2" alt="Original reference navbar on desktop before the Figma Make rework" onclick="openLightbox(this.src)">
+        <div class="img-caption" data-i18n="cap-orig-nav">Starting point · the original desktop navbar used as reference</div>
       </div>
 
       <div class="img-block img-block--portrait">
-        <img src="img/mobile-menu-original-ref.png" alt="Original reference mobile menu with chevrons grouped directly against their labels" onclick="openLightbox(this.src)">
-        <div class="img-caption">Starting point · the original mobile menu</div>
+        <img src="img/mobile-menu-original-ref.png" data-i18n-alt="alt-3" alt="Original reference mobile menu with chevrons grouped directly against their labels" onclick="openLightbox(this.src)">
+        <div class="img-caption" data-i18n="cap-orig-mobile">Starting point · the original mobile menu</div>
       </div>
 
       <div class="img-block">
-        <img src="img/first-build-initial-output.png" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
-        <div class="img-caption">The first result, before any review: logo already malformed, image already broken</div>
+        <img src="img/first-build-initial-output.png" data-i18n-alt="alt-4" alt="The very first Figma Make output: navbar with logo rendering as a malformed E-parenthesis shape and a broken image icon in place of the Solaranlagen-Installation photo" onclick="openLightbox(this.src)">
+        <div class="img-caption" data-i18n="cap-first">The first result, before any review: logo already malformed, image already broken</div>
       </div>
 
-      <p>After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) It admitted its own shortcomings in the same breath: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original. Set against those admissions, the claim isn't true. A poor call of judgment.</p>
-      <p>From there I had it produce two separate variants: Version B, staying close to the original reference, and Version C, a more visually ambitious rework. The gap had been underestimated: the logo was far off from the original reference, more than just an approximation, and the alignment of the navigation and the typeface also diverged more than "minor adjustments" implied, an initial indication that a tool's assessment of its own work requires independent verification rather than passive acceptance.</p>
+      <p data-i18n="ctx-p2">After reviewing the result, I asked Figma Make whether it had copied the design exactly, improved it, or created something more akin to a modern redesign. The answer: <em>"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,"</em> (!) It admitted its own shortcomings in the same breath: an approximated logo, and dropdown panel width and card proportions that might differ slightly from the original. Set against those admissions, the claim isn't true. A poor call of judgment.</p>
+      <p data-i18n="ctx-p3">From there I had it produce two separate variants: Version B, staying close to the original reference, and Version C, a more visually ambitious rework. The gap had been underestimated: the logo was far off from the original reference, more than just an approximation, and the alignment of the navigation and the typeface also diverged more than "minor adjustments" implied, an initial indication that a tool's assessment of its own work requires independent verification rather than passive acceptance.</p>
     </section>
 
     <section class="block" id="findings">
-      <div class="block-label">02 · Findings</div>
-      <h2>Shortcomings of the AI rework</h2>
-      <p>After reviewing the redesign more thoroughly, all in all five findings emerged, each belonging to one of two failure modes: <strong>unverified output</strong>, where a claim needed to be checked against reality before it could be trusted, or <strong>missing input</strong>, where the tool guessed confidently from incomplete source material.</p>
+      <div class="block-label" data-i18n="lbl-02">02 · Findings</div>
+      <h2 data-i18n="h2-02">Shortcomings of the AI rework</h2>
+      <p data-i18n="find-p">After reviewing the redesign more thoroughly, all in all five findings emerged, each belonging to one of two failure modes: <strong>unverified output</strong>, where a claim needed to be checked against reality before it could be trusted, or <strong>missing input</strong>, where the tool guessed confidently from incomplete source material.</p>
 
       <div class="process">
 
         <div class="process-step">
           <div class="step-num">1</div>
           <div>
-            <span class="step-tag unverified-output">Unverified output</span>
-            <div class="step-title">A broken image that persisted until it was flagged</div>
-            <p class="step-body">One of the dropdown cards for 'Solaranlagen-Installation' pointed to a broken image URL. This flaw was apparent right from the start of my review, as it was visible in the initial output shown above. However, this error survived multiple iterations and two separate design tracks without Figma Make ever catching or correcting it automatically. It took a human reviewer explicitly flagging it before it was fixed.</p>
+            <span class="step-tag unverified-output" data-i18n="tag-unverified">Unverified output</span>
+            <div class="step-title" data-i18n="f1-t">A broken image that persisted until it was flagged</div>
+            <p class="step-body" data-i18n="f1-b">One of the dropdown cards for 'Solaranlagen-Installation' pointed to a broken image URL. This flaw was apparent right from the start of my review, as it was visible in the initial output shown above. However, this error survived multiple iterations and two separate design tracks without Figma Make ever catching or correcting it automatically. It took a human reviewer explicitly flagging it before it was fixed.</p>
             <div class="img-block" style="margin-top: 16px;">
-              <img src="img/broken-image-card.png" alt="Dropdown card showing a broken image placeholder icon instead of a solar panel photo" onclick="openLightbox(this.src)">
-              <div class="img-caption">The Solaranlagen-Installation card, image never loaded</div>
+              <img src="img/broken-image-card.png" data-i18n-alt="alt-5" alt="Dropdown card showing a broken image placeholder icon instead of a solar panel photo" onclick="openLightbox(this.src)">
+              <div class="img-caption" data-i18n="f1-cap">The Solaranlagen-Installation card, image never loaded</div>
             </div>
           </div>
         </div>
@@ -369,17 +369,17 @@
         <div class="process-step">
           <div class="step-num">2</div>
           <div>
-            <span class="step-tag unverified-output">Unverified output</span>
-            <div class="step-title">Contrast values checked with numbers, not a glance</div>
-            <p class="step-body">Checking contrast values directly rather than trusting the render, Version B held up: it preserved the accessibility choices already present in the reference design. Version C didn't. Two text elements failed WCAG AA once measured: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
+            <span class="step-tag unverified-output" data-i18n="tag-unverified">Unverified output</span>
+            <div class="step-title" data-i18n="f2-t">Contrast values checked with numbers, not a glance</div>
+            <p class="step-body" data-i18n="f2-b">Checking contrast values directly rather than trusting the render, Version B held up: it preserved the accessibility choices already present in the reference design. Version C didn't. Two text elements failed WCAG AA once measured: a dropdown subtitle at 3.3:1 and a mobile sub-caption at 3.9:1, against a 4.5:1 requirement. Both looked readable enough on a bright screen. Corrected by raising opacity to roughly 0.55, around 6.2:1. Worth noting: this came from asking Figma Make pointed questions directly, a conversational capability, not a dedicated audit feature. Real WCAG scanners and heuristic-evaluation tools exist as separate plugins for Figma itself, not built into Figma Make.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/version_b_high_contrast.png" alt="Version B phone number and Kontakt button in full white and green, high contrast against the dark background" onclick="openLightbox(this.src)">
-                <div class="img-caption">Version B · faithful to the reference, contrast held up</div>
+                <img src="img/version_b_high_contrast.png" data-i18n-alt="alt-6" alt="Version B phone number and Kontakt button in full white and green, high contrast against the dark background" onclick="openLightbox(this.src)">
+                <div class="img-caption" data-i18n="f2-cap-b">Version B · faithful to the reference, contrast held up</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/version_c_low_contrast.png" alt="Version C phone number in a muted, lower-contrast green against the dark background" onclick="openLightbox(this.src)">
-                <div class="img-caption">Version C · contrast dropped below WCAG AA</div>
+                <img src="img/version_c_low_contrast.png" data-i18n-alt="alt-7" alt="Version C phone number in a muted, lower-contrast green against the dark background" onclick="openLightbox(this.src)">
+                <div class="img-caption" data-i18n="f2-cap-c">Version C · contrast dropped below WCAG AA</div>
               </div>
             </div>
           </div>
@@ -388,17 +388,17 @@
         <div class="process-step">
           <div class="step-num">3</div>
           <div>
-            <span class="step-tag unverified-output">Unverified output</span>
-            <div class="step-title">A mobile hierarchy that needed a why, not just a what</div>
-            <p class="step-body">The original reference had no phone number in the mobile menu at all, and its chevrons sat on the right too, same as Figma Make's version. What made the original intelligible despite not being optimized for mobile wasn't alignment, it was proximity: each chevron sat directly against its label, so the two read as one grouped unit. Figma Make kept the right-side placement but lost that closeness, pushing the chevrons out toward the far edge, disconnected from the label they belonged to, and added a phone number that didn't exist in the reference at all, dropped in at the bottom of the menu where it read as an afterthought. The tool was candid about the second problem once asked: an attempt to make the chevrons "subtle" had left them looking disconnected instead.</p>
+            <span class="step-tag unverified-output" data-i18n="tag-unverified">Unverified output</span>
+            <div class="step-title" data-i18n="f3-t">A mobile hierarchy that needed a why, not just a what</div>
+            <p class="step-body" data-i18n="f3-b">The original reference had no phone number in the mobile menu at all, and its chevrons sat on the right too, same as Figma Make's version. What made the original intelligible despite not being optimized for mobile wasn't alignment, it was proximity: each chevron sat directly against its label, so the two read as one grouped unit. Figma Make kept the right-side placement but lost that closeness, pushing the chevrons out toward the far edge, disconnected from the label they belonged to, and added a phone number that didn't exist in the reference at all, dropped in at the bottom of the menu where it read as an afterthought. The tool was candid about the second problem once asked: an attempt to make the chevrons "subtle" had left them looking disconnected instead.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/mobile-menu-original-ref.png" alt="Original reference mobile menu with chevrons grouped directly against their labels and no phone number present" onclick="openLightbox(this.src)">
-                <div class="img-caption">Original reference · chevrons grouped with their labels, no phone number</div>
+                <img src="img/mobile-menu-original-ref.png" data-i18n-alt="alt-8" alt="Original reference mobile menu with chevrons grouped directly against their labels and no phone number present" onclick="openLightbox(this.src)">
+                <div class="img-caption" data-i18n="f3-cap-a">Original reference · chevrons grouped with their labels, no phone number</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/mobile-menu-figma-make-misplaced.png" alt="Figma Make's reworked mobile menu with chevrons pushed to the far right, disconnected from their labels, and a phone number isolated at the bottom" onclick="openLightbox(this.src)">
-                <div class="img-caption">Figma Make's rework · chevrons pushed to the edge, phone number isolated</div>
+                <img src="img/mobile-menu-figma-make-misplaced.png" data-i18n-alt="alt-9" alt="Figma Make's reworked mobile menu with chevrons pushed to the far right, disconnected from their labels, and a phone number isolated at the bottom" onclick="openLightbox(this.src)">
+                <div class="img-caption" data-i18n="f3-cap-b">Figma Make's rework · chevrons pushed to the edge, phone number isolated</div>
               </div>
             </div>
           </div>
@@ -407,17 +407,17 @@
         <div class="process-step">
           <div class="step-num">4</div>
           <div>
-            <span class="step-tag missing-input">Missing input</span>
-            <div class="step-title">A logo guessed wrong twice</div>
-            <p class="step-body">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P". Neither was resolved by the tool reasoning its way to a fix, and neither was accurately flagged: the tool described the logo as "close but not exact," when it wasn't close at all, it had rendered a different letterform entirely. The tool had never seen the real asset, only a shape inferred from screenshots. My logo design, an "E" resembling a power socket and tilted slightly to the right, was evidently not legible enough from screenshots alone for the tool to interpret, and so it could not be recreated properly. The correct mark appeared only once the actual Logotype.svg was uploaded directly.</p>
+            <span class="step-tag missing-input" data-i18n="tag-missing">Missing input</span>
+            <div class="step-title" data-i18n="f4-t">A logo guessed wrong twice</div>
+            <p class="step-body" data-i18n="f4-b">An early version rendered the mark as "E)", a malformed arc. A later one rendered it as "P". Neither was resolved by the tool reasoning its way to a fix, and neither was accurately flagged: the tool described the logo as "close but not exact," when it wasn't close at all, it had rendered a different letterform entirely. The tool had never seen the real asset, only a shape inferred from screenshots. My logo design, an "E" resembling a power socket and tilted slightly to the right, was evidently not legible enough from screenshots alone for the tool to interpret, and so it could not be recreated properly. The correct mark appeared only once the actual Logotype.svg was uploaded directly.</p>
             <div class="img-grid" style="margin-top: 16px;">
               <div class="img-grid-item">
-                <img src="img/logo-broken-p.png" alt="Mobile menu with the logo rendering as a malformed P-like shape" onclick="openLightbox(this.src)">
-                <div class="img-caption">First malformed state · rendered as "P"</div>
+                <img src="img/logo-broken-p.png" data-i18n-alt="alt-10" alt="Mobile menu with the logo rendering as a malformed P-like shape" onclick="openLightbox(this.src)">
+                <div class="img-caption" data-i18n="f4-cap-a">First malformed state · rendered as "P"</div>
               </div>
               <div class="img-grid-item">
-                <img src="img/logo-fixed-e.png" alt="Mobile menu with the logo rendering as a different malformed shape" onclick="openLightbox(this.src)">
-                <div class="img-caption">Second malformed state · a different broken arc, not the actual fix</div>
+                <img src="img/logo-fixed-e.png" data-i18n-alt="alt-11" alt="Mobile menu with the logo rendering as a different malformed shape" onclick="openLightbox(this.src)">
+                <div class="img-caption" data-i18n="f4-cap-b">Second malformed state · a different broken arc, not the actual fix</div>
               </div>
             </div>
           </div>
@@ -426,11 +426,11 @@
         <div class="process-step">
           <div class="step-num">5</div>
           <div>
-            <span class="step-tag missing-input">Missing input</span>
-            <div class="step-title">A typeface question that resolved into something more precise</div>
-            <p class="step-body">The rendered nav text came out narrower and more tightly tracked than the original. The browser's computed style panel showed why: the nav renders with Tailwind's default stack, ui-sans-serif, system-ui, sans-serif, no custom typeface at all. Figma Make was candid about the gap: working from screenshots alone, without OCR or font-detection tools, it landed on Inter as a visual guess, which happens to resemble the system fonts it was actually looking at.</p>
+            <span class="step-tag missing-input" data-i18n="tag-missing">Missing input</span>
+            <div class="step-title" data-i18n="f5-t">A typeface question that resolved into something more precise</div>
+            <p class="step-body" data-i18n="f5-b">The rendered nav text came out narrower and more tightly tracked than the original. The browser's computed style panel showed why: the nav renders with Tailwind's default stack, ui-sans-serif, system-ui, sans-serif, no custom typeface at all. Figma Make was candid about the gap: working from screenshots alone, without OCR or font-detection tools, it landed on Inter as a visual guess, which happens to resemble the system fonts it was actually looking at.</p>
             <div class="img-block" style="margin: 16px 0;">
-              <img src="img/hero-navbar-final.png" alt="Final navbar render" onclick="openLightbox(this.src)">
+              <img src="img/hero-navbar-final.png" data-i18n-alt="alt-12" alt="Final navbar render" onclick="openLightbox(this.src)">
             </div>
           </div>
         </div>
@@ -439,40 +439,40 @@
     </section>
 
     <section class="block" id="improvements">
-      <div class="block-label">03 · Where It Helped</div>
-      <h2>Where Figma Make actually improved the original</h2>
-      <p>Not every part of this was a correction. A few things genuinely moved the design forward:</p>
+      <div class="block-label" data-i18n="lbl-03">03 · Where It Helped</div>
+      <h2 data-i18n="h2-03">Where Figma Make actually improved the original</h2>
+      <p data-i18n="imp-p">Not every part of this was a correction. A few things genuinely moved the design forward:</p>
       <ul style="padding-left: 20px; margin-bottom: 18px;">
-        <li style="margin-bottom: 10px;"><strong>A more modern-looking visual design overall</strong>, the scroll-aware navbar, the gradient CTA button, and the animated hover states gave the component a visual polish the original reference screenshots never had.</li>
-        <li style="margin-bottom: 10px;"><strong>Better-matched photography</strong>, several service cards had their stock imagery replaced with shots that actually fit the service and read as more German, looking more polished, glossy and commercial, though not every swap landed.</li>
-        <li style="margin-bottom: 10px;"><strong>A more complete mobile-friendly layout</strong>, the full-screen mobile overlay with expandable accordion sections gave the mobile experience more structure than a simple stacked list would have.</li>
-        <li><strong>A considered typography call</strong>, keeping Inter over the bare system stack it had guessed at meant consistent rendering across operating systems instead of a look that shifts depending on the visitor's device.</li>
+        <li style="margin-bottom: 10px;" data-i18n="imp-1"><strong>A more modern-looking visual design overall</strong>, the scroll-aware navbar, the gradient CTA button, and the animated hover states gave the component a visual polish the original reference screenshots never had.</li>
+        <li style="margin-bottom: 10px;" data-i18n="imp-2"><strong>Better-matched photography</strong>, several service cards had their stock imagery replaced with shots that actually fit the service and read as more German, looking more polished, glossy and commercial, though not every swap landed.</li>
+        <li style="margin-bottom: 10px;" data-i18n="imp-3"><strong>A more complete mobile-friendly layout</strong>, the full-screen mobile overlay with expandable accordion sections gave the mobile experience more structure than a simple stacked list would have.</li>
+        <li data-i18n="imp-4"><strong>A considered typography call</strong>, keeping Inter over the bare system stack it had guessed at meant consistent rendering across operating systems instead of a look that shifts depending on the visitor's device.</li>
       </ul>
     </section>
 
     <section class="block" id="takeaway">
-      <div class="block-label">04 · Takeaway</div>
-      <h2>Two failure modes, and the instinct that tells them apart</h2>
+      <div class="block-label" data-i18n="lbl-04">04 · Takeaway</div>
+      <h2 data-i18n="h2-04">Two failure modes, and the instinct that tells them apart</h2>
 
-      <p><strong>Missing input</strong> describes the logo and font problems: the tool guessed confidently from incomplete source material and never signaled that it was guessing. Both resolved faster once I went straight to the actual source, the SVG file, the computed style panel, than any further round of prompting would have. <strong>Unverified output</strong> covers the contrast failures, the hierarchy problems, and the broken image, each one only came to light because something specific got checked instead of just trusted.</p>
+      <p data-i18n="tk-p1"><strong>Missing input</strong> describes the logo and font problems: the tool guessed confidently from incomplete source material and never signaled that it was guessing. Both resolved faster once I went straight to the actual source, the SVG file, the computed style panel, than any further round of prompting would have. <strong>Unverified output</strong> covers the contrast failures, the hierarchy problems, and the broken image, each one only came to light because something specific got checked instead of just trusted.</p>
 
-      <p>The clearest pattern in that second group: visual polish consistently won out over accessibility. The contrast failures are the sharpest example, two text elements shipped below WCAG AA while effort went into gradients and hover animation instead, and the same gap showed up again in the mobile menu, where proximity worked in the desktop dropdown cards but broke down there.</p>
+      <p data-i18n="tk-p2">The clearest pattern in that second group: visual polish consistently won out over accessibility. The contrast failures are the sharpest example, two text elements shipped below WCAG AA while effort went into gradients and hover animation instead, and the same gap showed up again in the mobile menu, where proximity worked in the desktop dropdown cards but broke down there.</p>
 
-      <div class="callout">What actually transfers here is the diagnostic instinct: recognizing which of these two failure modes, missing input or unverified output, is in front of you, and knowing which kind of check that calls for.</div>
+      <div class="callout" data-i18n="tk-callout">What actually transfers here is the diagnostic instinct: recognizing which of these two failure modes, missing input or unverified output, is in front of you, and knowing which kind of check that calls for.</div>
 
-      <p>Everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning, not a line-by-line audit of the underlying implementation, that might be added later on. One question also stays open rather than asserted: whether the same approach extends to performance, image sizing, render-blocking resources, load times, is untested here.</p>
+      <p data-i18n="tk-p3">Everything above comes from examining the rendered output, the browser's computed styles, and the tool's own stated reasoning, not a line-by-line audit of the underlying implementation, that might be added later on. One question also stays open rather than asserted: whether the same approach extends to performance, image sizing, render-blocking resources, load times, is untested here.</p>
     </section>
 
     <div class="cta-block">
-      <h2>All Projects</h2>
-      <a href="https://sebastian-weber.github.io/uxui-portfolio/" class="btn">To the project overview &rarr;</a>
+      <h2 data-i18n="cta-h2">All Projects</h2>
+      <a href="https://sebastian-weber.github.io/uxui-portfolio/" class="btn" data-i18n="cta-btn">To the project overview &rarr;</a>
     </div>
 
   </main>
 
   <footer>
-    <p>Sebastian Weber · UI Designer · Design-to-Code · Cologne 2026</p>
-    <p><a href="https://linkedin.com/in/sebastian-weber1708" style="color: var(--muted); text-decoration: none;">LinkedIn</a> · <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" style="color: var(--muted); text-decoration: none;">Legal Notice &amp; Privacy Policy</a> · <a href="#" id="cookie-settings-link" style="color: var(--muted); text-decoration: none;">Cookie Settings</a></p>
+    <p data-i18n="foot-sig">Sebastian Weber · UI Designer · Design-to-Code · Cologne 2026</p>
+    <p><a href="https://linkedin.com/in/sebastian-weber1708" style="color: var(--muted); text-decoration: none;">LinkedIn</a> · <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" style="color: var(--muted); text-decoration: none;" data-i18n="foot-legal">Legal Notice &amp; Privacy Policy</a> · <a href="#" id="cookie-settings-link" style="color: var(--muted); text-decoration: none;" data-i18n="foot-cookie">Cookie Settings</a></p>
   </footer>
 
   <script>
@@ -530,7 +530,7 @@
       if (subnav) {
         items.forEach(function (item) {
           var a = document.createElement('a');
-          a.href = '#' + item.id; a.textContent = item.label; a.dataset.target = item.id;
+          a.href = '#' + item.id; a.textContent = item.label; a.dataset.target = item.id; a.setAttribute('data-i18n', 'sub-' + item.id);
           subnav.appendChild(a);
         });
       }
@@ -544,7 +544,7 @@
         items.forEach(function (item) {
           var li = document.createElement('li');
           var a = document.createElement('a');
-          a.href = '#' + item.id; a.textContent = item.label; a.className = 'subnav-drawer-item'; a.dataset.target = item.id;
+          a.href = '#' + item.id; a.textContent = item.label; a.className = 'subnav-drawer-item'; a.dataset.target = item.id; a.setAttribute('data-i18n', 'sub-' + item.id);
           li.appendChild(a);
           listEl.appendChild(li);
         });
@@ -610,18 +610,143 @@
     closeBtn.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
 
-    var drawerLangButtons = document.querySelectorAll('.nav-drawer__lang [data-lang]');
-    drawerLangButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var lang = btn.getAttribute('data-lang');
-        if (typeof window.switchLang === 'function') {
-          window.switchLang(lang);
-        }
-        document.querySelectorAll('[data-lang]').forEach(function (b) {
-          b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  })();
+  </script>
+
+  <script>
+  /* ============================================================
+     i18n: EN is the authored markup, DE comes from this dictionary.
+     Language is shared across portfolio pages via localStorage 'sw-lang'.
+     ============================================================ */
+  (function () {
+    var LANG_KEY = 'sw-lang';
+    var currentLang = 'en';
+    var DE = {
+      "menu-open": "Menü öffnen",
+      "menu-close": "Menü schließen",
+      "subnav-aria": "Abschnitte auf dieser Seite",
+      "nav-portfolio": "Portfolio",
+      "nav-about": "Über mich",
+      "nav-imprint": "Impressum",
+      "tag-unverified": "Ungeprüfter Output",
+      "tag-missing": "Fehlender Input",
+      "cookie-text": "Diese Seite nutzt PostHog für datenschutzfreundliche Analysen, gehostet auf Servern in der EU. <a href=\"https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a>",
+      "cookie-decline": "Ablehnen",
+      "cookie-accept": "Akzeptieren",
+      "drawer-onpage": "Auf dieser Seite",
+      "h1": "Ein KI-Redesign auf dem Prüfstand",
+      "hero-sub": "Ich habe Figma Make eine responsive Navbar anhand von sechs Screenshots nachbauen lassen. Auf den ersten Blick wirkte das Ergebnis stimmig. Spannend wurde es erst beim zweiten Hinsehen.",
+      "meta-project": "Projekt",
+      "meta-project-v": "Peters Elektro Template<br>Design-to-Code-Experiment",
+      "meta-role": "Meine Rolle",
+      "meta-role-v": "Design Review<br>Technischer Audit, Accessibility-QA",
+      "meta-timeline": "Zeitraum",
+      "lbl-01": "01 · Kontext",
+      "h2-01": "Versuchsaufbau und erste Einschätzung",
+      "ctx-p1": "Ich habe Figma Make Screenshots einer bestehenden responsiven Navigationsleiste gegeben: das Desktop- und das Mobile-Layout sowie einzelne Zustände wie aufgeklappte Dropdowns und das mobile Drawer-Overlay. Dann habe ich das Tool gebeten, die Komponente in Code nachzubauen. Die beiden vollständigen Ansichten unten zeigen die Ausgangslage. Die Screenshots der einzelnen Zustände zeige ich hier nicht.",
+      "cap-orig-nav": "Ausgangslage · die originale Desktop-Navbar als Referenz",
+      "cap-orig-mobile": "Ausgangslage · das originale Mobile-Menü",
+      "cap-first": "Das erste Ergebnis vor jeder Prüfung: Logo bereits verformt, Bild bereits defekt",
+      "ctx-p2": "Nach dem ersten Durchsehen habe ich Figma Make gefragt: Hast du das Design exakt kopiert, verbessert oder eher neu gestaltet? Die Antwort: <em>\"More of a <strong>faithful copy</strong> with <strong>minor practical adjustments</strong>,\"</em> (!), also eine originalgetreue Kopie mit kleinen Anpassungen. Im selben Atemzug nannte das Tool eigene Schwächen: Das Logo sei nur angenähert, Breite des Dropdown-Panels und Proportionen der Karten könnten leicht abweichen. Diese Eingeständnisse widersprechen der eigenen Einschätzung. Das Tool hat sich selbst falsch bewertet.",
+      "ctx-p3": "Danach habe ich zwei Varianten erstellen lassen: Version B bleibt nah an der Referenz, Version C ist eine mutigere Überarbeitung. Dabei zeigte sich, dass das Tool die Abweichungen unterschätzt hatte. Das Logo lag weit vom Original entfernt, weit mehr als eine Annäherung. Auch die Ausrichtung der Navigation und die Schrift wichen stärker ab, als „kleine Anpassungen“ vermuten ließ. Für mich ein erster Hinweis: Wie ein Tool seine eigene Arbeit bewertet, muss ich unabhängig prüfen. Ich kann es nicht einfach übernehmen.",
+      "lbl-02": "02 · Befunde",
+      "h2-02": "Wo die KI danebenlag",
+      "find-p": "Bei der genaueren Prüfung habe ich fünf Befunde festgehalten. Jeder gehört zu einem von zwei Fehlermustern. <strong>Ungeprüfter Output</strong> heißt: Ich musste eine Aussage erst an der Realität prüfen, bevor ich ihr trauen konnte. <strong>Fehlender Input</strong> heißt: Das Tool hat aus unvollständigem Material geraten und dabei sicher gewirkt.",
+      "f1-t": "Ein kaputtes Bild, das erst auf Hinweis repariert wurde",
+      "f1-b": "Eine Dropdown-Karte für „Solaranlagen-Installation“ verwies auf eine defekte Bild-URL. Der Fehler war von Anfang an sichtbar, schon im ersten Output oben. Trotzdem überstand er mehrere Iterationen und zwei getrennte Designstränge. Figma Make hat ihn nie selbst bemerkt oder behoben. Erst als ich ihn ausdrücklich angesprochen habe, wurde er korrigiert.",
+      "f1-cap": "Die Karte Solaranlagen-Installation, das Bild wurde nie geladen",
+      "f2-t": "Kontrast gemessen statt geschätzt",
+      "f2-b": "Ich habe die Kontrastwerte nachgeprüft, statt mich auf das Rendering zu verlassen. Version B hat den Test bestanden: Sie übernimmt die Barrierefreiheits-Entscheidungen der Referenz. Version C nicht. Zwei Textelemente fallen durch WCAG AA: ein Untertitel im Dropdown mit 3,3:1 und eine Unterzeile im Mobile-Menü mit 3,9:1. Gefordert sind 4,5:1. Auf einem hellen Bildschirm wirkten beide gut lesbar. Die Korrektur: Deckkraft auf etwa 0,55 angehoben, das ergibt rund 6,2:1. Wichtig: Die Werte habe ich durch gezielte Fragen an Figma Make bekommen. Das ist eine Chatfunktion, kein eigenes Audit-Feature. Echte WCAG-Scanner und Tools für heuristische Evaluation gibt es als Plugins für Figma, nicht in Figma Make.",
+      "f2-cap-b": "Version B · nah an der Referenz, Kontrast hielt stand",
+      "f2-cap-c": "Version C · Kontrast fiel unter WCAG AA",
+      "f3-t": "Mobile Hierarchie: Nähe schlägt Ausrichtung",
+      "f3-b": "In der Referenz gab es im Mobile-Menü keine Telefonnummer. Die Chevrons saßen dort ebenfalls rechts, wie bei Figma Make. Das Original war nicht für Mobile optimiert und trotzdem verständlich. Das lag nicht an der Ausrichtung, sondern an der Nähe: Jeder Chevron saß direkt neben seinem Label, beide wirkten wie eine Einheit. Figma Make hat die Chevrons rechts gelassen, aber an den äußeren Rand geschoben. Damit fehlt der Bezug zum Label. Außerdem hat das Tool eine Telefonnummer ergänzt, die es in der Referenz nicht gab. Sie steht unten im Menü und wirkt wie nachträglich eingefügt. Auf Nachfrage hat das Tool das Problem mit den Chevrons offen eingeräumt: Es wollte sie „dezent“ gestalten, dadurch wirkten sie losgelöst.",
+      "f3-cap-a": "Originalreferenz · Chevrons mit ihren Labels gruppiert, keine Telefonnummer",
+      "f3-cap-b": "Überarbeitung von Figma Make · Chevrons an den Rand gerückt, Telefonnummer isoliert",
+      "f4-t": "Das Logo: zweimal falsch geraten",
+      "f4-b": "Eine frühe Version zeigte das Logo als „E)“, einen verformten Bogen. Eine spätere zeigte ein „P“. Das Tool hat keinen der Fehler selbst gelöst und keinen richtig benannt. Es beschrieb das Logo als „close but not exact“. Tatsächlich war es eine ganz andere Buchstabenform. Das Tool kannte das echte Asset nicht, nur eine aus Screenshots abgeleitete Form. Mein Logo ist ein „E“, das an eine Steckdose erinnert und leicht nach rechts geneigt ist. Aus Screenshots allein konnte das Tool es offensichtlich nicht erkennen. Das richtige Logo erschien erst, als ich die Datei Logotype.svg direkt hochgeladen habe.",
+      "f4-cap-a": "Erster fehlerhafter Zustand · als „P“ gerendert",
+      "f4-cap-b": "Zweiter fehlerhafter Zustand · ein anderer verformter Bogen, nicht die eigentliche Korrektur",
+      "f5-t": "Die Schrift: geraten statt erkannt",
+      "f5-b": "Der Nav-Text war schmaler und enger gesetzt als im Original. Das Computed-Style-Panel im Browser zeigte den Grund: Die Nav nutzt den Standard-Schriftstack von Tailwind (ui-sans-serif, system-ui, sans-serif), also gar keine eigene Schrift. Figma Make hat die Lücke offen benannt. Es hatte nur Screenshots, ohne Text- oder Schrifterkennung. Deshalb hat es auf Inter getippt. Inter ähnelt den Systemschriften, die es tatsächlich gesehen hat.",
+      "lbl-03": "03 · Verbesserungen",
+      "h2-03": "Was Figma Make besser gemacht hat",
+      "imp-p": "Nicht alles musste ich korrigieren. Einiges hat das Design wirklich besser gemacht:",
+      "imp-1": "<strong>Ein moderneres Gesamtbild</strong>: Die Navbar reagiert auf das Scrollen, der CTA-Button hat einen Farbverlauf, die Hover-Zustände sind animiert. Das wirkt deutlich polierter als die Original-Screenshots.",
+      "imp-2": "<strong>Passendere Fotos</strong>: Bei mehreren Service-Karten hat Figma Make die Stockbilder ersetzt. Die neuen Bilder passen besser zur jeweiligen Leistung und wirken deutscher, hochwertiger und kommerzieller. Nicht jeder Tausch ist gelungen.",
+      "imp-3": "<strong>Ein durchdachteres Mobile-Layout</strong>: Das Overlay füllt den ganzen Bildschirm, die Abschnitte klappen als Akkordeon auf. Das gibt mehr Struktur als eine einfache Liste.",
+      "imp-4": "<strong>Eine sinnvolle Schriftwahl</strong>: Figma Make ist bei Inter geblieben, statt den geratenen System-Stack zu übernehmen. So sieht die Schrift auf jedem Betriebssystem gleich aus.",
+      "lbl-04": "04 · Fazit",
+      "h2-04": "Zwei Fehlermuster und wie man sie erkennt",
+      "tk-p1": "<strong>Fehlender Input</strong> betrifft das Logo und die Schrift. Das Tool hat aus unvollständigem Material geraten und nie gesagt, dass es rät. In beiden Fällen kam ich schneller ans Ziel, als ich direkt an die Quelle ging: an die SVG-Datei und an das Computed-Style-Panel. Weitere Prompts hätten länger gedauert. <strong>Ungeprüfter Output</strong> betrifft die Kontrastfehler, die Hierarchie und das kaputte Bild. Jeden dieser Fehler habe ich nur gefunden, weil ich etwas Konkretes geprüft habe, statt einfach zu vertrauen.",
+      "tk-p2": "Das deutlichste Muster in der zweiten Gruppe: Optik ging durchgehend vor Barrierefreiheit. Am klarsten zeigen das die Kontrastfehler. Zwei Textelemente lagen unter WCAG AA, während das Tool Aufwand in Farbverläufe und Hover-Animationen gesteckt hat. Dieselbe Lücke zeigt sich im Mobile-Menü: In den Dropdown-Karten auf dem Desktop funktioniert die Nähe von Elementen, im Mobile-Menü nicht mehr.",
+      "tk-callout": "Was sich übertragen lässt, ist der diagnostische Blick: Ich erkenne, welches der beiden Fehlermuster vorliegt, fehlender Input oder ungeprüfter Output, und weiß, welche Prüfung es braucht.",
+      "tk-p3": "Alle Befunde beruhen auf dem gerenderten Ergebnis, den berechneten Styles im Browser und den Begründungen des Tools selbst. Den Code dahinter habe ich nicht Zeile für Zeile geprüft. Das kann ich später nachholen. Eine Frage lasse ich bewusst offen: Ob der Ansatz auch für Performance funktioniert, also für Bildgrößen, render-blockierende Ressourcen und Ladezeiten, habe ich hier nicht getestet.",
+      "cta-h2": "Alle Projekte",
+      "cta-btn": "Zur Projektübersicht &rarr;",
+      "foot-sig": "Sebastian Weber · UI Designer · Design-to-Code · Köln 2026",
+      "foot-legal": "Impressum &amp; Datenschutz",
+      "foot-cookie": "Cookie-Einstellungen",
+      "alt-12": "Finales Rendering der Navbar",
+      "alt-11": "Mobile-Menü, in dem das Logo als eine andere verformte Form erscheint",
+      "alt-10": "Mobile-Menü, in dem das Logo als verformte, P-ähnliche Form erscheint",
+      "alt-9": "Überarbeitetes Mobile-Menü von Figma Make mit Chevrons am äußersten rechten Rand, getrennt von ihren Labels, und einer isolierten Telefonnummer unten",
+      "alt-8": "Originales Referenz-Mobile-Menü mit Chevrons direkt an ihren Labels und ohne Telefonnummer",
+      "alt-7": "Version C: Telefonnummer in gedämpftem Grün mit geringerem Kontrast zum dunklen Hintergrund",
+      "alt-6": "Version B: Telefonnummer und Kontakt-Button in vollem Weiß und Grün, hoher Kontrast zum dunklen Hintergrund",
+      "alt-5": "Dropdown-Karte mit einem Platzhaltersymbol für ein defektes Bild statt eines Solaranlagen-Fotos",
+      "alt-4": "Der allererste Output von Figma Make: Navbar mit einem Logo als verformte E-Klammer-Form und einem defekten Bildsymbol anstelle des Fotos für Solaranlagen-Installation",
+      "alt-3": "Originales Referenz-Mobile-Menü mit Chevrons direkt an ihren Labels",
+      "alt-2": "Originale Referenz-Navbar auf dem Desktop vor der Überarbeitung durch Figma Make",
+      "alt-1": "Vorher-Nachher-Vergleich",
+      "sub-context": "Kontext",
+      "sub-findings": "Befunde",
+      "sub-improvements": "Verbesserungen",
+      "sub-takeaway": "Fazit"
+};
+    var EN_CACHE = new Map();
+    var ATTR_CACHE = new Map();
+    var EN_TITLE = document.title;
+    var DE_TITLE = 'Case Study: Ein KI-Redesign auf dem Prüfstand | Sebastian Weber';
+
+    function applyStaticI18n() {
+      document.documentElement.lang = currentLang;
+      document.title = currentLang === 'de' ? DE_TITLE : EN_TITLE;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        if (!EN_CACHE.has(el)) EN_CACHE.set(el, el.innerHTML);
+        var de = DE[el.getAttribute('data-i18n')];
+        el.innerHTML = (currentLang === 'de' && de !== undefined) ? de : EN_CACHE.get(el);
+      });
+      [['data-i18n-aria', 'aria-label'], ['data-i18n-alt', 'alt']].forEach(function (pair) {
+        document.querySelectorAll('[' + pair[0] + ']').forEach(function (el) {
+          if (!ATTR_CACHE.has(el)) ATTR_CACHE.set(el, {});
+          var c = ATTR_CACHE.get(el);
+          if (c[pair[1]] === undefined) c[pair[1]] = el.getAttribute(pair[1]);
+          var de = DE[el.getAttribute(pair[0])];
+          el.setAttribute(pair[1], (currentLang === 'de' && de !== undefined) ? de : c[pair[1]]);
         });
       });
+      document.querySelectorAll('[data-lang]').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === currentLang);
+      });
+    }
+
+    window.switchLang = function (lang) {
+      if (lang !== 'en' && lang !== 'de') return;
+      if (lang === currentLang) return;
+      currentLang = lang;
+      try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+      applyStaticI18n();
+    };
+
+    try {
+      var saved = localStorage.getItem(LANG_KEY);
+      if (saved === 'de' || saved === 'en') currentLang = saved;
+    } catch (e) {}
+    document.querySelectorAll('[data-lang]').forEach(function (btn) {
+      btn.addEventListener('click', function () { window.switchLang(btn.getAttribute('data-lang')); });
     });
+    applyStaticI18n();
   })();
   </script>
 
