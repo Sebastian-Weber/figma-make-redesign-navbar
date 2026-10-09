@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* Platz der Scrollbar reservieren: verhindert den Sprung des Close-Buttons beim Scroll-Lock */
+    html { scrollbar-gutter: stable; }
+
   /* Wrapper styles are class-scoped so Tailwind preflight from the React app cannot override them. */
   :root {
     --bg: #f7f6f3;
@@ -216,7 +219,7 @@
     <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener">LinkedIn</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu" data-i18n-aria="menu-open">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9H21M3 15H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
   </button>
 </nav>
 
